@@ -1,5 +1,5 @@
 :root {
-  --font-heading: "", sans-serif;
+  --font-heading: "Idiqlat", sans-serif;
   --font-body: "Montserrat", sans-serif;
   --color-black: #070707;
   --color-primary: #211c19;
@@ -109,6 +109,30 @@
   font-size: 12px;
   line-height: 1;
   font-weight: 600;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.heading-1 {
+  font-size: 64px;
+  line-height: 80px;
+}
+
+.heading-2 {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.heading-3 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.heading-4 {
+  font-size: 20px;
+  line-height: 22px;
 }
 
 /* ================================
