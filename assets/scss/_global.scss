@@ -1,0 +1,4 @@
+.polygon-animation {
+  transition: clip-path 0.3s ease;
+  will-change: clip-path;
+}

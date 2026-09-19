@@ -1,7 +1,7 @@
 :root {
   // font
   --font-heading: "", sans-serif;
-  --font-body: "", sans-serif;
+  --font-body: "Montserrat", sans-serif;
   // color
   --color-black: #070707;
   --color-primary: #211c19;
@@ -84,4 +84,28 @@
     width: 100%;
     margin: 0 auto;
   }
+}
+
+.color-gold {
+  color: var(--color-gold);
+}
+.b1-font {
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 400;
+}
+.b2-font {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+}
+.menu-font {
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 500;
+}
+.btn-font {
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 600;
 }
