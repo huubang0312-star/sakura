@@ -9,6 +9,9 @@ export function customDropdown() {
     const dropdownItems = dropdown.querySelectorAll(".dropdown-custom-item");
     const valueSelect = dropdown.querySelector(".value-select");
     const displayText = dropdown.querySelector(".dropdown-custom-text");
+    const targetInput = dropdown.dataset.input
+      ? document.querySelector(dropdown.dataset.input)
+      : null;
 
     const isSelectType = dropdown.classList.contains("dropdown-custom-select");
 
@@ -17,6 +20,10 @@ export function customDropdown() {
       closeAllDropdowns(dropdown);
       dropdownMenu.classList.toggle("dropdown--active");
       btnDropdown.classList.toggle("--active");
+      btnDropdown.setAttribute(
+        "aria-expanded",
+        String(dropdownMenu.classList.contains("dropdown--active")),
+      );
     });
 
     document.addEventListener("click", function () {
@@ -29,8 +36,12 @@ export function customDropdown() {
 
         if (isSelectType) {
           const optionText = item.textContent;
-          displayText.textContent = optionText;
+          displayText.innerHTML = item.innerHTML;
           dropdown.classList.add("selected");
+          if (targetInput) {
+            targetInput.value = item.dataset.value || optionText.trim();
+            targetInput.dispatchEvent(new Event("change", { bubbles: true }));
+          }
         } else {
           const currentImgEl = valueSelect.querySelector("img");
           const currentImg = currentImgEl ? currentImgEl.src : "";
@@ -70,9 +81,193 @@ export function customDropdown() {
       if (!exception || dropdown !== exception) {
         menu.classList.remove("dropdown--active");
         btn.classList.remove("--active");
+        btn.setAttribute("aria-expanded", "false");
       }
     });
   }
+}
+
+export function contact() {
+  const form = document.querySelector(".form-contact");
+  if (!form) return;
+  if (form.dataset.contactInitialized === "true") return;
+  form.dataset.contactInitialized = "true";
+
+  const countryList = form.querySelector("#contact-country-list");
+  const countryCodes = [
+    "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AR", "AT", "AU", "AW", "AZ",
+    "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ",
+    "CA", "CD", "CF", "CG", "CH", "CI", "CL", "CM", "CN", "CO", "CR", "CU", "CV", "CY", "CZ",
+    "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ER", "ES", "ET",
+    "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY",
+    "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IR", "IS", "IT",
+    "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KP", "KR", "KW", "KZ",
+    "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY",
+    "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MM", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ",
+    "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM",
+    "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA",
+    "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SD", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SY", "SZ",
+    "TD", "TG", "TH", "TJ", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ",
+    "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VN", "VU", "WS", "YE", "ZA", "ZM", "ZW",
+  ];
+
+  if (countryList && !countryList.querySelector(".dropdown-custom-item")) {
+    const locale = document.documentElement.lang || "en";
+    const countryNames =
+      typeof Intl.DisplayNames === "function"
+        ? new Intl.DisplayNames([locale], { type: "region" })
+        : null;
+    countryCodes
+      .map((code) => ({
+        code,
+        name: countryNames?.of(code) || code,
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name, locale))
+      .forEach(({ code, name }) => {
+        const item = document.createElement("button");
+        item.className = "dropdown-custom-item";
+        item.type = "button";
+        item.setAttribute("role", "option");
+        item.dataset.value = code;
+        item.innerHTML = `<span class="country-flag fi fi-${code.toLowerCase()}" aria-hidden="true"></span><span>${name}</span>`;
+        countryList.appendChild(item);
+      });
+  }
+
+  const countrySearch = form.querySelector("#contact-country-search");
+  const countryItems = countryList?.querySelectorAll(".dropdown-custom-item");
+
+  if (countrySearch && countryItems?.length) {
+    const normalizeText = (text) =>
+      text
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+
+    const resetCountrySearch = () => {
+      countrySearch.value = "";
+      countryItems.forEach((item) => {
+        item.hidden = false;
+      });
+    };
+
+    countrySearch.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+
+    countrySearch.addEventListener("input", () => {
+      const keyword = normalizeText(countrySearch.value);
+      countryItems.forEach((item) => {
+        item.hidden = !normalizeText(item.textContent).includes(keyword);
+      });
+    });
+
+    countryItems.forEach((item) => {
+      item.addEventListener("click", resetCountrySearch);
+    });
+  }
+
+  const syncField = (field) => {
+    const wrapper = field.closest(".form-contact__field");
+    if (!wrapper) return;
+    wrapper.classList.toggle("has-value", Boolean(field.value.trim()));
+  };
+
+  const formFields = form.querySelectorAll(
+    "input:not(.country-search__input), textarea, select",
+  );
+
+  formFields.forEach((field) => {
+    syncField(field);
+    ["input", "change", "blur"].forEach((eventName) => {
+      field.addEventListener(eventName, () => {
+        syncField(field);
+        if (field.value.trim()) {
+          field.closest(".form-contact__field")?.classList.remove("error");
+        }
+      });
+    });
+  });
+
+  const dateField = form.querySelector("#contact-date");
+  if (dateField && typeof Lightpick !== "undefined") {
+    new Lightpick({
+      field: dateField,
+      minDate: new Date(),
+      singleDate: true,
+      numberOfMonths: 1,
+      format: "DD/MM/YYYY",
+      onSelect: () => {
+        syncField(dateField);
+        dateField.dispatchEvent(new Event("change", { bubbles: true }));
+      },
+    });
+  }
+
+  const submitButton = form.querySelector('[type="submit"]');
+  const requiredItems = form.querySelectorAll(".form-contact__field.required");
+
+  const getFieldValue = (formItem) => {
+    const field = formItem.querySelector("input, textarea, select");
+    return field?.value.trim() || "";
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    let firstInvalidItem = null;
+
+    requiredItems.forEach((formItem) => {
+      const hasValue = getFieldValue(formItem).length > 0;
+      formItem.classList.toggle("error", !hasValue);
+
+      if (!hasValue) {
+        isValid = false;
+        firstInvalidItem ||= formItem;
+      }
+    });
+
+    if (firstInvalidItem) {
+      const visibleControl = firstInvalidItem.querySelector(
+        ".dropdown-custom-btn, select, input:not(.visually-hidden), textarea",
+      );
+      visibleControl?.focus();
+    }
+
+    return isValid;
+  };
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (submitButton?.classList.contains("aloading")) return;
+    if (!validateForm()) return;
+
+    const formData = new FormData(form);
+    const formValues = Object.fromEntries(formData.entries());
+    console.log("Contact form data:", formValues);
+
+    submitButton?.classList.add("aloading");
+    if (submitButton) submitButton.disabled = true;
+
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+
+    submitButton?.classList.remove("aloading");
+    if (submitButton) submitButton.disabled = false;
+
+    alert("submit form thành công");
+
+    form.reset();
+    form.querySelectorAll(".form-contact__field").forEach((formItem) => {
+      formItem.classList.remove("error", "has-value");
+    });
+    form.querySelectorAll(".dropdown-custom-select").forEach((dropdown) => {
+      dropdown.classList.remove("selected");
+      const displayText = dropdown.querySelector(".dropdown-custom-text");
+      if (displayText) {
+        displayText.textContent = dropdown.dataset.placeholder || "";
+      }
+    });
+  });
 }
 export function headerScroll() {
   const header = document.getElementById("header");

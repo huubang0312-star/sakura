@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Center | Sakura Massage</title>
+    <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
+    <meta
+      name="description"
+      content="Book your Sakura Massage experience in Da Nang."
+    />
+
+    <link rel="stylesheet" href="./assets/libs/lightpick.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flag-icons@7.5.0/css/flag-icons.min.css"
+    />
+    <link rel="stylesheet" href="./assets/fonts/Montserrat/font.css" />
+    <link rel="stylesheet" href="./assets/main/css/style.min.css" />
+  </head>
+
+  <body class="contact-page">
+    <main>
+      <section class="section-contact" aria-labelledby="booking-title">
+        <div class="contact-wrapper">
+          <header class="contact-heading">
+            <h1 id="booking-title">Booking Center</h1>
+            <p>
+              Whether you’re planning a visit, arranging a group booking,<br />
+              or selecting the perfect gift, we’re here to help you make it
+              effortless.
+            </p>
+          </header>
+
+          <nav class="contact-menu" aria-label="Massage menus">
+            <a href="#" class="contact-menu__link">
+              Menu Sakura Massage VIP Da Nang
+            </a>
+            <a href="#" class="contact-menu__link">
+              Menu New Sakura Da Nang
+            </a>
+          </nav>
+
+          <form class="form-contact" action="#" method="post" novalidate>
+            <div class="form-contact__field form-contact__field--location required">
+              <label class="visually-hidden" for="contact-location">Sakura</label>
+              <input
+                id="contact-location"
+                class="visually-hidden"
+                name="location"
+                type="text"
+                tabindex="-1"
+                aria-hidden="true"
+                required
+              />
+              <div
+                class="dropdown-custom-select"
+                data-input="#contact-location"
+                data-placeholder="Sakura"
+              >
+                <button
+                  class="dropdown-custom-btn"
+                  type="button"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                >
+                  <span class="dropdown-custom-text">Sakura</span>
+                  <img
+                    class="dropdown-custom-arrow"
+                    src="./assets/images/icons/icon-arrow-down.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <div class="dropdown-custom-menu" role="listbox" data-lenis-prevent>
+                  <button
+                    class="dropdown-custom-item"
+                    type="button"
+                    role="option"
+                    data-value="sakura"
+                  >
+                    Sakura
+                  </button>
+                  <button
+                    class="dropdown-custom-item"
+                    type="button"
+                    role="option"
+                    data-value="new-sakura"
+                  >
+                    New Sakura
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-contact__field form-contact__field--text required">
+              <label class="form-contact__label" for="contact-name">Your name</label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                placeholder=" "
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="form-contact__field form-contact__field--text required">
+              <label class="form-contact__label" for="contact-guests">
+                Number of guest
+              </label>
+              <input
+                id="contact-guests"
+                name="guests"
+                type="number"
+                min="1"
+                inputmode="numeric"
+                placeholder=" "
+                required
+              />
+            </div>
+
+            <div class="form-contact__row">
+              <div class="form-contact__field form-contact__field--icon required">
+                <label class="form-contact__label" for="contact-date">Date</label>
+                <input
+                  id="contact-date"
+                  name="date"
+                  type="text"
+                  placeholder=" "
+                  autocomplete="off"
+                  readonly
+                  required
+                />
+                <img
+                  src="./assets/images/icons/icon-calendar.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+              </div>
+
+              <div class="form-contact__field form-contact__field--time required">
+                <label class="visually-hidden" for="contact-time">Time</label>
+                <input
+                  id="contact-time"
+                  class="visually-hidden"
+                  name="time"
+                  type="text"
+                  tabindex="-1"
+                  aria-hidden="true"
+                  required
+                />
+
+                <div
+                  class="dropdown-custom-select"
+                  data-input="#contact-time"
+                  data-placeholder="Time"
+                >
+                  <button
+                    class="dropdown-custom-btn"
+                    type="button"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                  >
+                    <span class="dropdown-custom-text">Time</span>
+                    <img
+                      src="./assets/images/icons/icon-clock.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                  </button>
+                  <div
+                    class="dropdown-custom-menu dropdown-custom-menu--time"
+                    role="listbox"
+                    data-lenis-prevent
+                  >
+                    <button
+                      class="dropdown-custom-item"
+                      type="button"
+                      role="option"
+                      data-value="09:00"
+                    >
+                      09:00
+                    </button>
+                    <button
+                      class="dropdown-custom-item"
+                      type="button"
+                      role="option"
+                      data-value="10:00"
+                    >
+                      10:00
+                    </button>
+                    <button
+                      class="dropdown-custom-item"
+                      type="button"
+                      role="option"
+                      data-value="11:00"
+                    >
+                      11:00
+                    </button>
+                    <button
+                      class="dropdown-custom-item"
+                      type="button"
+                      role="option"
+                      data-value="12:00"
+                    >
+                      12:00
+                    </button>
+                    <button
+                      class="dropdown-custom-item"
+                      type="button"
+                      role="option"
+                      data-value="13:00"
+                    >
+                      13:00
+                    </button>
+                    <button class="dropdown-custom-item" type="button" role="option" data-value="14:00">
+                      14:00
+                    </button>
+                    <button class="dropdown-custom-item" type="button" role="option" data-value="15:00">
+                      15:00
+                    </button>
+                    <button class="dropdown-custom-item" type="button" role="option" data-value="16:00">
+                      16:00
+                    </button>
+                    <button class="dropdown-custom-item" type="button" role="option" data-value="17:00">
+                      17:00
+                    </button>
+                    <button class="dropdown-custom-item" type="button" role="option" data-value="18:00">
+                      18:00
+                    </button>
+                    <button class="dropdown-custom-item" type="button" role="option" data-value="19:00">
+                      19:00
+                    </button>
+                    <button class="dropdown-custom-item" type="button" role="option" data-value="20:00">
+                      20:00
+                    </button>
+                    <button class="dropdown-custom-item" type="button" role="option" data-value="21:00">
+                      21:00
+                    </button>
+                    <button class="dropdown-custom-item" type="button" role="option" data-value="22:00">
+                      22:00
+                    </button>
+                    <button class="dropdown-custom-item" type="button" role="option" data-value="23:00">
+                      23:00
+                    </button>
+                    <button class="dropdown-custom-item" type="button" role="option" data-value="00:00">
+                      00:00
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-contact__field form-contact__field--nation required">
+              <label class="visually-hidden" for="contact-nation">Nation</label>
+              <input
+                id="contact-nation"
+                class="visually-hidden"
+                name="nation"
+                type="text"
+                tabindex="-1"
+                aria-hidden="true"
+                required
+              />
+              <div
+                class="dropdown-custom-select"
+                data-input="#contact-nation"
+                data-placeholder="Nation"
+              >
+                <button
+                  class="dropdown-custom-btn"
+                  type="button"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                >
+                  <span class="dropdown-custom-text">Nation</span>
+                  <img
+                    class="dropdown-custom-arrow"
+                    src="./assets/images/icons/icon-arrow-down.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+                <div
+                  id="contact-country-list"
+                  class="dropdown-custom-menu dropdown-custom-menu--countries"
+                  role="listbox"
+                  data-lenis-prevent
+                >
+                  <div class="country-search">
+                    <input
+                      id="contact-country-search"
+                      class="country-search__input"
+                      type="search"
+                      placeholder="Search country"
+                      aria-label="Search country"
+                      autocomplete="off"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-contact__field form-contact__field--textarea">
+              <label class="form-contact__label" for="contact-note">
+                Booking note
+              </label>
+              <textarea
+                id="contact-note"
+                name="note"
+                rows="3"
+                placeholder=" "
+              ></textarea>
+            </div>
+
+            <button class="form-contact__submit" type="submit">
+              Make reservation
+            </button>
+          </form>
+        </div>
+
+        <aside class="contact-qr" aria-label="Contact via QR code">
+          <span class="contact-qr__label">Click to select the QR scanning method.</span>
+          <div class="contact-qr__list">
+            <a href="./assets/images/del/QR-code.jpg" aria-label="Open contact QR code 1">
+              <img src="./assets/images/del/QR-code.jpg" alt="Contact QR code 1" />
+            </a>
+            <a href="./assets/images/del/QR-code.jpg" aria-label="Open contact QR code 2">
+              <img src="./assets/images/del/QR-code.jpg" alt="Contact QR code 2" />
+            </a>
+            <a href="./assets/images/del/QR-code.jpg" aria-label="Open contact QR code 3">
+              <img src="./assets/images/del/QR-code.jpg" alt="Contact QR code 3" />
+            </a>
+            <a href="./assets/images/del/QR-code.jpg" aria-label="Open contact QR code 4">
+              <img src="./assets/images/del/QR-code.jpg" alt="Contact QR code 4" />
+            </a>
+            <a href="./assets/images/del/QR-code.jpg" aria-label="Open contact QR code 5">
+              <img src="./assets/images/del/QR-code.jpg" alt="Contact QR code 5" />
+            </a>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./assets/libs/jquery-3.7.1.js"></script>
+    <script src="./assets/libs/lenis.min.js"></script>
+    <script src="./assets/libs/gsap.min.js"></script>
+    <script src="./assets/libs/ScrollTrigger.min.js"></script>
+    <script src="./assets/libs/SplitText.min.js"></script>
+    <script src="./assets/libs/bootstrap.bundle.min.js"></script>
+    <script src="./assets/libs/swiper-bundle.min.js"></script>
+    <script src="./assets/libs/moment.min.js"></script>
+    <script src="./assets/libs/lightpick.min.js"></script>
+    <script type="module" src="./assets/main/js/script.min.js?v=2"></script>
+  </body>
+</html>

@@ -3,6 +3,7 @@ import {
   customDropdown,
   createFilterTab,
   getDateLightPick,
+  contact,
 } from "../../main/js/global.min.js";
 
 const $ = jQuery;
@@ -72,6 +73,7 @@ function initSwiper() {
 function heroCover() {
   const cover = document.querySelector(".hero-cover");
   const hero = document.querySelector(".hero-container");
+  if (!cover || !hero) return;
 
   let blindsCount;
   const screenWidth = window.innerWidth;
@@ -141,6 +143,7 @@ function heroCover() {
 
 function init() {
   gsap.registerPlugin(ScrollTrigger);
+  contact();
   customDropdown();
   createFilterTab();
   // getDateLightPick();
