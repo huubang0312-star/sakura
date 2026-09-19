@@ -93,6 +93,19 @@ export function contact() {
   if (form.dataset.contactInitialized === "true") return;
   form.dataset.contactInitialized = "true";
 
+  if (typeof window.GLightbox === "function") {
+    window.GLightbox({
+      selector: ".contact-qr__link",
+      openEffect: "zoom",
+      closeEffect: "zoom",
+      slideEffect: "fade",
+      touchNavigation: true,
+      keyboardNavigation: true,
+      closeOnOutsideClick: true,
+      zoomable: false,
+    });
+  }
+
   const countryList = form.querySelector("#contact-country-list");
   const countryCodes = [
     "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AR", "AT", "AU", "AW", "AZ",
