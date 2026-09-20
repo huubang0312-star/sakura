@@ -224,35 +224,28 @@ function animationImage() {
 }
 function animationText() {
   document.fonts.ready.then(() => {
-    gsap.registerPlugin(SplitText);
+    gsap.registerPlugin(SplitText, ScrollTrigger);
 
-    const animHeadingPara = document.querySelectorAll(".el-title");
+    document.querySelectorAll(".el-title").forEach((headingElement) => {
+      const wrapper = headingElement.parentElement;
+      const descElement = wrapper.querySelector(".el-desc");
+      const button = wrapper.querySelector(".el-button");
 
-    animHeadingPara.forEach((headingElement, index) => {
       const splitHeading = new SplitText(headingElement, {
         type: "words, chars",
         wordsClass: "el-word",
         charsClass: "el-char",
       });
 
-      const descElement = document.querySelectorAll(".el-desc")[index];
-      const splitDescription = new SplitText(descElement, {
-        type: "lines",
-        linesClass: "el-line",
-      });
-
-      const button = headingElement.parentElement.querySelector(".el-button");
-
-      const headingParaTimeline = gsap.timeline({
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: headingElement,
-          scroller: "body",
           start: "top 80%",
           // markers: true,
         },
       });
 
-      headingParaTimeline.from(splitHeading.chars, {
+      tl.from(splitHeading.chars, {
         y: 30,
         opacity: 0,
         duration: 0.3,
@@ -260,27 +253,33 @@ function animationText() {
         ease: "power2.out",
       });
 
-      headingParaTimeline.from(
-        splitDescription.lines,
-        {
-          y: 20,
-          opacity: 0,
-          duration: 0.35,
-          stagger: 0.1,
-          ease: "power2.out",
-        },
-        "-=0.15",
-      );
+      if (descElement) {
+        gsap.set(descElement, { autoAlpha: 1 }); // phòng trường hợp CSS đang ẩn
 
-      if (button) {
-        headingParaTimeline.from(
-          button,
+        const splitDescription = new SplitText(descElement, {
+          type: "lines",
+          linesClass: "el-line",
+        });
+
+        console.log(descElement, splitDescription.lines); // debug: phải có line
+
+        tl.from(
+          splitDescription.lines,
           {
             y: 20,
             opacity: 0,
-            duration: 0.4,
+            duration: 0.35,
+            stagger: 0.1,
             ease: "power2.out",
           },
+          "-=0.15",
+        );
+      }
+
+      if (button) {
+        tl.from(
+          button,
+          { y: 20, opacity: 0, duration: 0.4, ease: "power2.out" },
           "-=0.15",
         );
       }
