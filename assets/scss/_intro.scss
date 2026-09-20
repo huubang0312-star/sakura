@@ -10,6 +10,7 @@
   z-index: 2;
   overflow: hidden;
   padding-top: 100px;
+
   &::before {
     content: "";
     position: absolute;
@@ -21,11 +22,37 @@
     );
     z-index: -1;
   }
+  &-line {
+    position: absolute;
+    top: 180px;
+    left: 32px;
+    right: 32px;
+    img {
+      width: calc(100vw - 64px);
+    }
+  }
   &-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 120px;
+      width: 1px;
+      height: calc(100% - 40px);
+      background-color: var(--color-line);
+    }
+    &::before {
+      left: 32.5px;
+    }
+    &::after {
+      right: 32.5px;
+    }
   }
   &-logo {
     margin-bottom: 48px;

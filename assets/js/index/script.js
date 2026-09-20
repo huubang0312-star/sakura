@@ -281,7 +281,7 @@ function animationText() {
             duration: 0.4,
             ease: "power2.out",
           },
-          "+=0",
+          "-=0.15",
         );
       }
     });

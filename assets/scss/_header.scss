@@ -4,6 +4,7 @@
   right: 0;
   z-index: 999;
   background-color: var(--color-black);
+  border-bottom: 1px solid var(--color-line);
 }
 .header {
   &-container {
@@ -72,7 +73,7 @@
             left: -12px;
             background-color: var(--color-black);
             min-width: 125px;
-            margin-top: 32px;
+            margin-top: 33px;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -135,7 +136,7 @@
         border: 1px solid var(--color-gold);
         box-shadow: 0 0 0 4px var(--color-black);
         top: 100%;
-        margin-top: 30px;
+        margin-top: 31px;
         left: -12px;
         opacity: 0;
         visibility: hidden;

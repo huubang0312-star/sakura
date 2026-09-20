@@ -1028,6 +1028,10 @@ body {
   transform: translateX(-50%);
   width: max-content;
   z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 .hero-img {
   width: 100%;
@@ -1069,11 +1073,35 @@ body {
   background: radial-gradient(50% 50% at 50% 50%, rgba(33, 28, 25, 0) 0%, #211c19 100%);
   z-index: -1;
 }
+.intro-line {
+  position: absolute;
+  top: 180px;
+  left: 32px;
+  right: 32px;
+}
+.intro-line img {
+  width: calc(100vw - 64px);
+}
 .intro-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+}
+.intro-container::before, .intro-container::after {
+  content: "";
+  position: absolute;
+  top: 120px;
+  width: 1px;
+  height: calc(100% - 40px);
+  background-color: var(--color-line);
+}
+.intro-container::before {
+  left: 32.5px;
+}
+.intro-container::after {
+  right: 32.5px;
 }
 .intro-logo {
   margin-bottom: 48px;
@@ -1111,6 +1139,7 @@ body {
   right: 0;
   z-index: 999;
   background-color: var(--color-black);
+  border-bottom: 1px solid var(--color-line);
 }
 
 .header-container {
@@ -1177,7 +1206,7 @@ body {
   left: -12px;
   background-color: var(--color-black);
   min-width: 125px;
-  margin-top: 32px;
+  margin-top: 33px;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
@@ -1219,7 +1248,7 @@ body {
   border: 1px solid var(--color-gold);
   box-shadow: 0 0 0 4px var(--color-black);
   top: 100%;
-  margin-top: 30px;
+  margin-top: 31px;
   left: -12px;
   opacity: 0;
   visibility: hidden;
