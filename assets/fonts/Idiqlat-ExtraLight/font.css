@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'Idiqlat';
-    src: url('Idiqlat-ExtraLight.eot');
-    src: url('Idiqlat-ExtraLight.eot?#iefix') format('embedded-opentype'),
-        url('Idiqlat-ExtraLight.woff2') format('woff2'),
-        url('Idiqlat-ExtraLight.woff') format('woff'),
-        url('Idiqlat-ExtraLight.ttf') format('truetype'),
-        url('Idiqlat-ExtraLight.svg#Idiqlat-ExtraLight') format('svg');
+    font-family: 'SVN-Idiqlat';
+    src: url('SVN-Idiqlat-ExtraLight.eot');
+    src: url('SVN-Idiqlat-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('SVN-Idiqlat-ExtraLight.woff2') format('woff2'),
+        url('SVN-Idiqlat-ExtraLight.woff') format('woff'),
+        url('SVN-Idiqlat-ExtraLight.ttf') format('truetype'),
+        url('SVN-Idiqlat-ExtraLight.svg#SVN-Idiqlat-ExtraLight') format('svg');
     font-weight: 200;
     font-style: normal;
     font-display: swap;

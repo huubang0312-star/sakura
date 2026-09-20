@@ -13,6 +13,11 @@
     gap: 40px;
     padding: 16px 40px 16px 150px;
   }
+  &-main {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
   &-menu {
     ul {
       display: flex;
@@ -49,6 +54,9 @@
             display: flex;
             align-items: center;
             gap: 0;
+            &::before {
+              width: calc(100% - 21px);
+            }
             .icon {
               margin-left: 12px;
             }
@@ -99,6 +107,83 @@
                 }
               }
             }
+          }
+        }
+        a {
+          &:hover {
+            color: var(--color-gold);
+          }
+        }
+      }
+    }
+  }
+  &-gr {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  &-lang {
+    .dropdown-custom {
+      position: relative;
+      cursor: pointer;
+
+      &-menu {
+        position: absolute;
+        width: calc(100% + 10px);
+        background-color: var(--color-black);
+        padding: 12px;
+        border: 1px solid var(--color-gold);
+        box-shadow: 0 0 0 4px var(--color-black);
+        top: 100%;
+        margin-top: 30px;
+        left: -12px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        &.dropdown--active {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+      &-item {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--color-gold);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        width: max-content;
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      &-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .icon {
+          svg {
+            path {
+              color: var(--color-gold);
+            }
+          }
+        }
+        .value-select {
+          display: flex;
+          align-items: center;
+
+          gap: 8px;
+          img {
+            width: 24px;
+            height: 24px;
+          }
+          span {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-gold);
+            width: 22px;
           }
         }
       }

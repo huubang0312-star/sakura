@@ -1,5 +1,5 @@
 :root {
-  --font-heading: "Idiqlat", sans-serif;
+  --font-heading: "SVN-Idiqlat", sans-serif;
   --font-body: "Montserrat", sans-serif;
   --color-black: #070707;
   --color-primary: #211c19;
@@ -897,6 +897,57 @@ body {
   will-change: clip-path;
 }
 
+.button-global {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  height: 44px;
+  width: max-content;
+  background: linear-gradient(270deg, #d9af6c 0%, #ff8d28 47.6%, #735d39 100%);
+  border-radius: 22px;
+  position: relative;
+  overflow: hidden;
+}
+.button-global::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background-color: var(--color-black);
+  border-radius: 21px;
+  z-index: 2;
+}
+.button-global span {
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  display: inline-block;
+  position: relative;
+  z-index: 3;
+}
+
+.underline-hover {
+  position: relative;
+  display: inline-block;
+}
+.underline-hover:hover::before, .underline-hover.active::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.underline-hover::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .lightpick {
   --color-stroke: #ccc;
   --color-bg: #fff;
@@ -1069,6 +1120,11 @@ body {
   gap: 40px;
   padding: 16px 40px 16px 150px;
 }
+.header-main {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
 .header-menu ul {
   display: flex;
   align-items: center;
@@ -1102,6 +1158,9 @@ body {
   display: flex;
   align-items: center;
   gap: 0;
+}
+.header-menu ul li.menu-item-has-children > a::before {
+  width: calc(100% - 21px);
 }
 .header-menu ul li.menu-item-has-children > a .icon {
   margin-left: 12px;
@@ -1139,6 +1198,73 @@ body {
 }
 .header-menu ul li.menu-item-has-children > .sub-menu ul li a {
   white-space: nowrap;
+}
+.header-menu ul li a:hover {
+  color: var(--color-gold);
+}
+.header-gr {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.header-lang .dropdown-custom {
+  position: relative;
+  cursor: pointer;
+}
+.header-lang .dropdown-custom-menu {
+  position: absolute;
+  width: calc(100% + 10px);
+  background-color: var(--color-black);
+  padding: 12px;
+  border: 1px solid var(--color-gold);
+  box-shadow: 0 0 0 4px var(--color-black);
+  top: 100%;
+  margin-top: 30px;
+  left: -12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+.header-lang .dropdown-custom-menu.dropdown--active {
+  opacity: 1;
+  visibility: visible;
+}
+.header-lang .dropdown-custom-item {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gold);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: max-content;
+}
+.header-lang .dropdown-custom-item img {
+  width: 24px;
+  height: 24px;
+}
+.header-lang .dropdown-custom-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header-lang .dropdown-custom-btn .icon svg path {
+  color: var(--color-gold);
+}
+.header-lang .dropdown-custom-btn .value-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header-lang .dropdown-custom-btn .value-select img {
+  width: 24px;
+  height: 24px;
+}
+.header-lang .dropdown-custom-btn .value-select span {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gold);
+  width: 22px;
 }
 
 .contact-page {

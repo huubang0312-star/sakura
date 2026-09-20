@@ -248,6 +248,7 @@ function animationText() {
           trigger: headingElement,
           scroller: "body",
           start: "top 80%",
+          // markers: true,
         },
       });
 
