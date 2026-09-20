@@ -1,0 +1,22 @@
+.explore {
+  &-inner {
+    max-width: calc(100% - 64px);
+    width: 100%;
+    margin: 0 auto;
+    border-left: 1px solid var(--color-line);
+    border-right: 1px solid var(--color-line);
+    padding-top: 140px;
+  }
+  &-heading {
+    margin-left: 118px;
+    max-width: 50%;
+    width: 100%;
+  }
+  &-logo {
+    margin-bottom: 24px;
+    img {
+      height: 33px;
+      width: auto;
+    }
+  }
+}

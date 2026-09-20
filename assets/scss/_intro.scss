@@ -22,13 +22,18 @@
     );
     z-index: -1;
   }
+  &-hoa {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
   &-line {
     position: absolute;
     top: 180px;
     left: 32px;
     right: 32px;
     img {
-      width: calc(100vw - 64px);
+      width: 100%;
     }
   }
   &-container {
@@ -48,10 +53,10 @@
       background-color: var(--color-line);
     }
     &::before {
-      left: 32.5px;
+      left: 32px;
     }
     &::after {
-      right: 32.5px;
+      right: 32px;
     }
   }
   &-logo {

@@ -1073,6 +1073,11 @@ body {
   background: radial-gradient(50% 50% at 50% 50%, rgba(33, 28, 25, 0) 0%, #211c19 100%);
   z-index: -1;
 }
+.intro-hoa {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
 .intro-line {
   position: absolute;
   top: 180px;
@@ -1080,7 +1085,7 @@ body {
   right: 32px;
 }
 .intro-line img {
-  width: calc(100vw - 64px);
+  width: 100%;
 }
 .intro-container {
   display: flex;
@@ -1098,10 +1103,10 @@ body {
   background-color: var(--color-line);
 }
 .intro-container::before {
-  left: 32.5px;
+  left: 32px;
 }
 .intro-container::after {
-  right: 32.5px;
+  right: 32px;
 }
 .intro-logo {
   margin-bottom: 48px;
@@ -1729,4 +1734,24 @@ body {
   .contact-qr__list {
     gap: 16px;
   }
+}
+.explore-inner {
+  max-width: calc(100% - 64px);
+  width: 100%;
+  margin: 0 auto;
+  border-left: 1px solid var(--color-line);
+  border-right: 1px solid var(--color-line);
+  padding-top: 140px;
+}
+.explore-heading {
+  margin-left: 118px;
+  max-width: 50%;
+  width: 100%;
+}
+.explore-logo {
+  margin-bottom: 24px;
+}
+.explore-logo img {
+  height: 33px;
+  width: auto;
 }
