@@ -1,0 +1,26 @@
+<svg width="1141" height="582" viewBox="0 0 1141 582" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="1107.5" y="0.5" width="13.3571" height="13.3571" stroke="#C2AE8A"/>
+<rect x="1127.14" y="0.5" width="13.3571" height="13.3571" stroke="#C2AE8A"/>
+<rect x="1127.14" y="20.1428" width="13.3571" height="13.3571" stroke="#C2AE8A"/>
+<rect x="1120.86" y="13.8572" width="6.28571" height="6.28571" stroke="#C2AE8A"/>
+<path d="M1120.46 31.9285V20.1428H1109.07" stroke="#C2AE8A"/>
+<rect x="33.5" y="581.5" width="13.3571" height="13.3571" transform="rotate(180 33.5 581.5)" stroke="#C2AE8A"/>
+<rect x="13.8572" y="581.5" width="13.3571" height="13.3571" transform="rotate(180 13.8572 581.5)" stroke="#C2AE8A"/>
+<rect x="13.8572" y="561.857" width="13.3571" height="13.3571" transform="rotate(180 13.8572 561.857)" stroke="#C2AE8A"/>
+<rect x="20.1428" y="568.143" width="6.28571" height="6.28571" transform="rotate(180 20.1428 568.143)" stroke="#C2AE8A"/>
+<path d="M20.5356 550.071V561.857H31.9285" stroke="#C2AE8A"/>
+<rect width="13.3571" height="13.3571" transform="matrix(-1 0 0 1 33.5 0.5)" stroke="#C2AE8A"/>
+<rect width="13.3571" height="13.3571" transform="matrix(-1 0 0 1 13.8572 0.5)" stroke="#C2AE8A"/>
+<rect width="13.3571" height="13.3571" transform="matrix(-1 0 0 1 13.8572 20.1428)" stroke="#C2AE8A"/>
+<rect width="6.28571" height="6.28571" transform="matrix(-1 0 0 1 20.1428 13.8572)" stroke="#C2AE8A"/>
+<path d="M20.5356 31.9285V20.1428H31.9285" stroke="#C2AE8A"/>
+<rect width="13.3571" height="13.3571" transform="matrix(1 0 0 -1 1107.5 581.5)" stroke="#C2AE8A"/>
+<rect width="13.3571" height="13.3571" transform="matrix(1 0 0 -1 1127.14 581.5)" stroke="#C2AE8A"/>
+<rect width="13.3571" height="13.3571" transform="matrix(1 0 0 -1 1127.14 561.857)" stroke="#C2AE8A"/>
+<rect width="6.28571" height="6.28571" transform="matrix(1 0 0 -1 1120.86 568.143)" stroke="#C2AE8A"/>
+<path d="M1120.46 550.071V561.857H1109.07" stroke="#C2AE8A"/>
+<path d="M1140.5 33.5V549" stroke="#C2AE8A"/>
+<path d="M1107.5 0.5L33.5 0.5" stroke="#C2AE8A"/>
+<path d="M1107.5 581.5L33.5 581.5" stroke="#C2AE8A"/>
+<path d="M0.5 33.5V549" stroke="#C2AE8A"/>
+</svg>

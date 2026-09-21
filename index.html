@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="./assets/libs/lenis.css" />
   <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
   <link rel="stylesheet" href="./assets/libs/lightpick.min.css">
+  <link rel="stylesheet" href="./assets/fonts/Montserrat/font.css" />
+  <link rel="stylesheet" href="./assets/fonts/Idiqlat-ExtraLight/font.css" />
   <!-- end meta -->
   <!-- link custom css page -->
   <link rel="stylesheet" href="./assets/main/css/style.min.css" />
@@ -43,6 +45,7 @@
         const navLinks = document.querySelectorAll(".header-menu ul>li>a");
         navLinks.forEach((link) => {
           const linkPath = link.getAttribute("href");
+          if (!linkPath) return;
 
           // Normalize paths for comparison
           let normalizedCurrentPath = currentPath;
@@ -88,8 +91,63 @@
   <header id="header" class="header position-fixed"></header>
   <!-- end header -->
   <main>
+    <section class="section-branch" id="sectionBranch" aria-labelledby="section-branch-title">
+      <div class="section-branch__container limit-width">
+        <div class="section-branch__heading">
+          <h2 id="section-branch-title" class="heading-2 font-heading el-title">Welcome to Massage Sakura</h2>
+          <p class="b2-font el-desc">
+            Sakura blends modern Japanese aesthetics with privacy and comfort: red lantern<br />
+            corridors, textured walls, and quiet rooms with bathtubs and sauna.
+          </p>
+        </div>
 
-    <input type="text" id="datepicker" />
+        <div class="section-branch__list">
+          <div class="section-branch__card section-branch__card--vip">
+            <div class="section-branch__visual polygon-box">
+              <div class="section-branch__media">
+                <img
+                  src="./assets/images/del/branch-1.png"
+                  alt="Reception area at Sakura Massage VIP Da Nang"
+                  loading="lazy"
+                />
+              </div>
+              <img
+                class="section-branch__frame"
+                src="./assets/images/icons/frame-image-1.svg"
+                alt=""
+                aria-hidden="true"
+              />
+            </div>
+            <div class="section-branch__content">
+              <h3 class="font-heading">Sakura Massage Vip Da Nang</h3>
+              <a class="button-global" href="#"><span>Explore</span></a>
+            </div>
+          </div>
+
+          <div class="section-branch__card section-branch__card--new">
+            <div class="section-branch__visual polygon-box">
+              <div class="section-branch__media">
+                <img
+                  src="./assets/images/del/branch-2.png"
+                  alt="Interior of New Sakura Da Nang"
+                  loading="lazy"
+                />
+              </div>
+              <img
+                class="section-branch__frame"
+                src="./assets/images/icons/frame-image-2.svg"
+                alt=""
+                aria-hidden="true"
+              />
+            </div>
+            <div class="section-branch__content">
+              <h3 class="font-heading">New Sakura Da Nang</h3>
+              <a class="button-global" href="#"><span>Explore</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   <!-- layout -->
   <!-- footer -->

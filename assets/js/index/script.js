@@ -226,26 +226,71 @@ function intro() {
 //   });
 // }
 function animationBox() {
+  gsap.registerPlugin(SplitText, ScrollTrigger);
+
   gsap.utils.toArray(".polygon-box").forEach((box) => {
     if (box.dataset.revealInitialized) return;
     box.dataset.revealInitialized = true;
 
-    gsap.fromTo(
+    const branchCard = box.matches(".section-branch__visual")
+      ? box.closest(".section-branch__card")
+      : null;
+    const branchTitle = branchCard?.querySelector(".section-branch__content h3");
+    const branchButton = branchCard?.querySelector(".section-branch__content .button-global");
+    const splitBranchTitle = branchTitle
+      ? new SplitText(branchTitle, {
+          type: "words, chars",
+          wordsClass: "el-word",
+          charsClass: "el-char",
+        })
+      : null;
+
+    if (splitBranchTitle) {
+      gsap.set(branchTitle, { autoAlpha: 1 });
+      gsap.set(splitBranchTitle.chars, { y: 30, autoAlpha: 0 });
+    }
+
+    if (branchButton) {
+      gsap.set(branchButton, { autoAlpha: 0 });
+    }
+
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: box,
+        start: "top 65%",
+        toggleActions: "play none none none",
+        once: true,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    timeline.fromTo(
       box,
       { clipPath: "polygon(0 0, 0 0, 0 0, 0 0)" },
       {
         clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
         duration: 1,
         ease: "power1.out",
-        scrollTrigger: {
-          trigger: box,
-          start: "top 65%",
-          toggleActions: "play none none none",
-          once: true,
-          invalidateOnRefresh: true,
-        },
       },
     );
+
+    if (splitBranchTitle) {
+      timeline.to(splitBranchTitle.chars, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.3,
+        stagger: 0.05,
+        ease: "power2.out",
+      });
+    }
+
+    if (branchButton) {
+      timeline.to(branchButton, {
+        autoAlpha: 1,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    }
   });
 }
 function animationText() {
