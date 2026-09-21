@@ -146,6 +146,7 @@ function init() {
   contact();
   customDropdown();
   createFilterTab();
+  slider();
   // getDateLightPick();
 }
 
@@ -285,8 +286,6 @@ function animationText() {
           linesClass: "el-line",
         });
 
-        console.log(descElement, splitDescription.lines); // debug: phải có line
-
         tl.from(
           splitDescription.lines,
           {
@@ -307,6 +306,39 @@ function animationText() {
           "-=0.15",
         );
       }
+    });
+
+    // Button chạy riêng, không nằm trong timeline của heading
+    gsap.utils.toArray(".el-button-v2").forEach((btn) => {
+      if (btn.dataset.revealInitialized) return;
+      btn.dataset.revealInitialized = true;
+
+      gsap.from(btn, {
+        y: 20,
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: btn,
+          start: "top 90%",
+          once: true,
+        },
+      });
+    });
+  });
+}
+function slider() {
+  document.querySelectorAll(".explore-slider").forEach((parent) => {
+    const sliderEl = parent.querySelector(".slider-global");
+    if (!sliderEl || sliderEl.swiper) return;
+
+    new Swiper(sliderEl, {
+      slidesPerView: 3.4,
+      spaceBetween: 24,
+      navigation: {
+        nextEl: parent.querySelector(".swiper-button-next"),
+        prevEl: parent.querySelector(".swiper-button-prev"),
+      },
     });
   });
 }

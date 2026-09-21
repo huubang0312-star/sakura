@@ -953,6 +953,34 @@ body {
     clip-path: polygon(0 0, 0 0, 0 0, 0 0);
   }
 }
+.slider-btn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  background: linear-gradient(270deg, #d9af6c 0%, #ff8d28 47.6%, #735d39 100%);
+  border-radius: 50%;
+  left: unset;
+  right: unset;
+  top: unset;
+  opacity: 1 !important;
+}
+.slider-btn::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background-color: rgb(33, 28, 25);
+  border-radius: 50%;
+}
+.slider-btn .icon {
+  position: relative;
+  z-index: 2;
+}
+.slider-btn::after {
+  content: unset;
+  font-size: 0;
+}
+
 .lightpick {
   --color-stroke: #ccc;
   --color-bg: #fff;
@@ -1752,6 +1780,7 @@ body {
   margin-left: 118px;
   max-width: 50%;
   width: 100%;
+  margin-bottom: 40px;
 }
 .explore-logo {
   margin-bottom: 24px;
@@ -1759,4 +1788,52 @@ body {
 .explore-logo img {
   height: 33px;
   width: auto;
+}
+.explore-slider .swiper {
+  padding-left: 118px;
+}
+.explore-box {
+  overflow: hidden;
+  position: relative;
+  border-radius: 24px;
+}
+.explore-img {
+  width: 100%;
+  aspect-ratio: 364/473;
+}
+.explore-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.explore-content {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.explore-name {
+  position: relative;
+}
+.explore-name::before {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.8) 62.49%, rgba(0, 0, 0, 0) 100%);
+  width: 150%;
+  height: 150%;
+  transform: scale(1.2);
+  z-index: -1;
+}
+.explore-control {
+  padding-left: 118px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-right: 170px;
+}
+.explore-pagination {
+  gap: 12px;
 }

@@ -61,3 +61,30 @@
     clip-path: polygon(0 0, 0 0, 0 0, 0 0);
   }
 }
+.slider-btn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  background: linear-gradient(270deg, #d9af6c 0%, #ff8d28 47.6%, #735d39 100%);
+  border-radius: 50%;
+  left: unset;
+  right: unset;
+  top: unset;
+  opacity: 1 !important;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background-color: rgb(33, 28, 25);
+    border-radius: 50%;
+  }
+  .icon {
+    position: relative;
+    z-index: 2;
+  }
+  &::after {
+    content: unset;
+    font-size: 0;
+  }
+}

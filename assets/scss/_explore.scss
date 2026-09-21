@@ -11,6 +11,7 @@
     margin-left: 118px;
     max-width: 50%;
     width: 100%;
+    margin-bottom: 40px;
   }
   &-logo {
     margin-bottom: 24px;
@@ -18,5 +19,59 @@
       height: 33px;
       width: auto;
     }
+  }
+  &-slider {
+    .swiper {
+      padding-left: 118px;
+    }
+  }
+  &-box {
+    overflow: hidden;
+    position: relative;
+    border-radius: 24px;
+  }
+  &-img {
+    width: 100%;
+    aspect-ratio: 364 / 473;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &-content {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &-name {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: -25%;
+      left: -25%;
+      background: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(0, 0, 0, 0.8) 62.49%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      width: 150%;
+      height: 150%;
+      transform: scale(1.2);
+      z-index: -1;
+    }
+  }
+  &-control {
+    padding-left: 118px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-right: 170px;
+  }
+  &-pagination {
+    gap: 12px;
   }
 }
