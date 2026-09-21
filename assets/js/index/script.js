@@ -154,8 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initSwiper();
   heroCover();
   intro();
-  animationImage();
+  // animationImage();
   animationText();
+  animationBox();
 });
 
 let isLinkClicked = false;
@@ -193,33 +194,56 @@ function intro() {
     });
   }
 }
-function animationImage() {
-  gsap.utils.toArray(".polygon-img-p").forEach((parent) => {
-    const container = parent.querySelector(".polygon-img");
-    if (!container) return;
-    if (parent.dataset.revealInitialized) return;
-    parent.dataset.revealInitialized = true;
+// function animationImage() {
+//   gsap.utils.toArray(".polygon-img-p").forEach((parent) => {
+//     const container = parent.querySelector(".polygon-img");
+//     if (!container) return;
+//     if (parent.dataset.revealInitialized) return;
+//     parent.dataset.revealInitialized = true;
 
-    gsap
-      .timeline({
+//     gsap
+//       .timeline({
+//         scrollTrigger: {
+//           trigger: parent,
+//           start: "top 65%",
+//           toggleActions: "play none none none",
+//           once: true,
+//           invalidateOnRefresh: true,
+//         },
+//       })
+//       .fromTo(
+//         container,
+//         { clipPath: "polygon(0 0, 0 0, 0 0, 0 0)", scale: 1.5 },
+//         {
+//           clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+//           scale: 1,
+//           duration: 1,
+//           ease: "power1.out",
+//         },
+//       );
+//   });
+// }
+function animationBox() {
+  gsap.utils.toArray(".polygon-box").forEach((box) => {
+    if (box.dataset.revealInitialized) return;
+    box.dataset.revealInitialized = true;
+
+    gsap.fromTo(
+      box,
+      { clipPath: "polygon(0 0, 0 0, 0 0, 0 0)" },
+      {
+        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+        duration: 1,
+        ease: "power1.out",
         scrollTrigger: {
-          trigger: parent,
+          trigger: box,
           start: "top 65%",
           toggleActions: "play none none none",
           once: true,
           invalidateOnRefresh: true,
         },
-      })
-      .fromTo(
-        container,
-        { clipPath: "polygon(0 0, 0 0, 0 0, 0 0)", scale: 1.5 },
-        {
-          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-          scale: 1,
-          duration: 1,
-          ease: "power1.out",
-        },
-      );
+      },
+    );
   });
 }
 function animationText() {
