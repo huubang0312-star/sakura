@@ -158,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // animationImage();
   animationText();
   animationBox();
+  animationMake();
 });
 
 let isLinkClicked = false;
@@ -357,7 +358,7 @@ function slider() {
     });
   });
 }
-animationMake();
+
 // function animationMake() {
 //   document.querySelectorAll(".make").forEach((section) => {
 //     if (section.dataset.revealInitialized) return;
