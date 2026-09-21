@@ -2,6 +2,52 @@
   position: relative;
   height: 100vh;
   overflow: hidden;
+  &.box-border {
+    .make-item {
+      --outer-size: 8px; // độ dày lớp đen ngoài
+      --border-size: 1px; // độ dày viền gradient
+
+      isolation: isolate;
+      width: 100%;
+      aspect-ratio: 265 / 365;
+      mask: url("../../images/icons/mask.svg") center / 100% 100% no-repeat;
+      background-color: var(--color-black);
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: var(--outer-size);
+        z-index: -1;
+        background: linear-gradient(
+          90deg,
+          #b8140b 0%,
+          #ff9620 52.4%,
+          #da5149 100%
+        );
+        mask: url("../../images/icons/mask.svg") center / 100% 100% no-repeat;
+      }
+
+      // lớp đen bên trong
+      &::after {
+        content: "";
+        position: absolute;
+        inset: calc(var(--outer-size) + var(--border-size));
+        z-index: -1;
+        background-color: var(--color-black);
+        mask: url("../../images/icons/mask.svg") center / 100% 100% no-repeat;
+      }
+    }
+    .make-box {
+      text-align: center;
+      h4 {
+        margin-bottom: 12px;
+      }
+    }
+  }
   &-inner {
     max-width: calc(100% - 64px);
     width: 100%;
@@ -50,7 +96,7 @@
   &-img {
     width: 100%;
     aspect-ratio: 265 / 365;
-    mask: url("../../images/icons/mask.png");
+    mask: url("../../images/icons/mask.svg");
     mask-size: 100% 100%;
     mask-repeat: no-repeat;
     overflow: hidden;
