@@ -2046,7 +2046,8 @@ body {
 .section-branch__container {
   position: relative;
   z-index: 1;
-  max-width: 1142px;
+  max-width: calc(100% - 300px);
+  margin-bottom: 10vh;
 }
 
 .section-branch__heading {
