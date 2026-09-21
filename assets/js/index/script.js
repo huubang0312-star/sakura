@@ -253,6 +253,7 @@ function animationText() {
 
     document.querySelectorAll(".el-title").forEach((headingElement) => {
       const wrapper = headingElement.parentElement;
+      const logo = wrapper.querySelector(".el-logo");
       const descElement = wrapper.querySelector(".el-desc");
       const button = wrapper.querySelector(".el-button");
 
@@ -270,13 +271,27 @@ function animationText() {
         },
       });
 
-      tl.from(splitHeading.chars, {
-        y: 30,
-        opacity: 0,
-        duration: 0.3,
-        stagger: 0.05,
-        ease: "power2.out",
-      });
+      // Logo chạy đầu tiên
+      if (logo) {
+        tl.from(logo, {
+          y: 20,
+          opacity: 0,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      }
+
+      tl.from(
+        splitHeading.chars,
+        {
+          y: 30,
+          opacity: 0,
+          duration: 0.3,
+          stagger: 0.05,
+          ease: "power2.out",
+        },
+        logo ? "-=0.15" : 0,
+      );
 
       if (descElement) {
         gsap.set(descElement, { autoAlpha: 1 }); // phòng trường hợp CSS đang ẩn
@@ -341,4 +356,145 @@ function slider() {
       },
     });
   });
+}
+animationMake();
+// function animationMake() {
+//   document.querySelectorAll(".make").forEach((section) => {
+//     if (section.dataset.revealInitialized) return;
+//     section.dataset.revealInitialized = true;
+
+//     const items = section.querySelectorAll(".make-item");
+//     if (!items.length) return;
+
+//     const tl = gsap.timeline({
+//       defaults: { ease: "none" },
+//       scrollTrigger: {
+//         trigger: section,
+//         start: "top top",
+//         end: () => "+=" + section.offsetHeight * 2,
+//         pin: true,
+//         scrub: 1,
+//         invalidateOnRefresh: true,
+//         // markers: true,
+//       },
+//     });
+
+//     items.forEach((item, i) => {
+//       tl.to(
+//         item,
+//         {
+//           // chạy lên đến khi item ra khỏi mép trên của section
+//           y: () => -(item.offsetTop + item.offsetHeight),
+//           duration: 1,
+//         },
+//         i * 0.15, // item sau bắt đầu trễ hơn một chút
+//       );
+//     });
+//   });
+// }
+function animationMake() {
+  document.querySelectorAll(".make").forEach((section) => {
+    if (section.dataset.revealInitialized) return;
+    section.dataset.revealInitialized = true;
+
+    const items = section.querySelectorAll(".make-item");
+    const flowers = section.querySelectorAll(".flower-item");
+    if (!items.length) return;
+
+    items.forEach((item, i) => item.style.setProperty("--i", i));
+
+    const getMaxTravel = () =>
+      Math.max(...[...items].map((it) => it.offsetTop + it.offsetHeight));
+
+    const tl = gsap.timeline({
+      defaults: { ease: "none" },
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: () => "+=" + getMaxTravel(),
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        // markers: true,
+      },
+    });
+
+    tl.to(
+      items,
+      {
+        y: () => -getMaxTravel(),
+        duration: 1,
+      },
+      0,
+    );
+
+    const flowerScale = [1.4, 1.6, 1.3];
+    const flowerBlur = [6, 10, 4];
+
+    flowers.forEach((flower, i) => {
+      tl.fromTo(
+        flower,
+        {
+          scale: flowerScale[i] ?? 1.4,
+          filter: `blur(${flowerBlur[i] ?? 6}px)`,
+        },
+        {
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 1,
+          transformOrigin: "50% 50%",
+        },
+        0,
+      );
+    });
+    makeMouseParallax(section, items);
+  });
+}
+function makeMouseParallax(section, items) {
+  const mm = gsap.matchMedia();
+
+  mm.add(
+    "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+    () => {
+      const maxMove = 4;
+      const depths = [...items].map((_, i) => 0.6 + (i % 3) * 0.4);
+
+      const setters = [...items].map((item) => ({
+        x: gsap.quickTo(item, "xPercent", {
+          duration: 0.8,
+          ease: "power3.out",
+        }),
+        y: gsap.quickTo(item, "yPercent", {
+          duration: 0.8,
+          ease: "power3.out",
+        }),
+      }));
+
+      const onMove = (e) => {
+        const rect = section.getBoundingClientRect();
+        const nx = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 → 0.5
+        const ny = (e.clientY - rect.top) / rect.height - 0.5;
+
+        setters.forEach((s, i) => {
+          s.x(-nx * 2 * maxMove * depths[i]);
+          s.y(-ny * 2 * maxMove * depths[i]);
+        });
+      };
+
+      const onLeave = () =>
+        setters.forEach((s) => {
+          s.x(0);
+          s.y(0);
+        });
+
+      section.addEventListener("mousemove", onMove);
+      section.addEventListener("mouseleave", onLeave);
+
+      return () => {
+        section.removeEventListener("mousemove", onMove);
+        section.removeEventListener("mouseleave", onLeave);
+        gsap.set(items, { xPercent: 0, yPercent: 0 });
+      };
+    },
+  );
 }

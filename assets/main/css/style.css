@@ -920,6 +920,7 @@ body {
 .button-global span {
   font-size: 12px;
   line-height: 15px;
+  font-weight: 600;
   text-transform: uppercase;
   color: var(--color-gold);
   display: inline-block;
@@ -965,12 +966,20 @@ body {
   top: unset;
   opacity: 1 !important;
 }
+.slider-btn.swiper-button-disabled {
+  pointer-events: auto;
+  cursor: pointer;
+}
+.slider-btn:hover::before {
+  background-color: var(--color-black);
+}
 .slider-btn::before {
   content: "";
   position: absolute;
   inset: 1px;
   background-color: rgb(33, 28, 25);
   border-radius: 50%;
+  transition: all 0.3s ease;
 }
 .slider-btn .icon {
   position: relative;
@@ -1768,6 +1777,9 @@ body {
     gap: 16px;
   }
 }
+.explore {
+  position: relative;
+}
 .explore-inner {
   max-width: calc(100% - 64px);
   width: 100%;
@@ -1775,6 +1787,10 @@ body {
   border-left: 1px solid var(--color-line);
   border-right: 1px solid var(--color-line);
   padding-top: 140px;
+}
+.explore-bg {
+  right: 0;
+  top: 0;
 }
 .explore-heading {
   margin-left: 118px;
@@ -1836,4 +1852,84 @@ body {
 }
 .explore-pagination {
   gap: 12px;
+}
+
+.make {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+.make-inner {
+  max-width: calc(100% - 64px);
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  border-left: 1px solid var(--color-line);
+  border-right: 1px solid var(--color-line);
+  padding-top: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.make-main {
+  max-width: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  z-index: 4;
+}
+.make-main h2 {
+  text-align: center;
+}
+.make-item {
+  position: absolute;
+  z-index: 2;
+  max-width: 16.6666666667%;
+  width: 100%;
+  --gap: 50%;
+  top: calc(100% + var(--i) * var(--gap));
+}
+.make-item:nth-child(4n+1) {
+  left: 15%;
+}
+.make-item:nth-child(4n+2) {
+  right: 20%;
+}
+.make-item:nth-child(4n+3) {
+  left: 25%;
+}
+.make-item:nth-child(4n+4) {
+  right: 30%;
+}
+.make-img {
+  width: 100%;
+  aspect-ratio: 265/365;
+  mask: url("../../images/icons/mask.png");
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.make-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.make-flower .flower-item {
+  position: absolute;
+  z-index: 1;
+}
+.make-flower .flower-item:nth-child(1) {
+  top: 25%;
+  right: 40%;
+}
+.make-flower .flower-item:nth-child(2) {
+  top: 70%;
+  left: 30%;
+}
+.make-flower .flower-item:nth-child(3) {
+  right: 5%;
 }

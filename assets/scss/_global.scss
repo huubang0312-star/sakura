@@ -26,6 +26,7 @@
   span {
     font-size: 12px;
     line-height: 15px;
+    font-weight: 600;
     text-transform: uppercase;
     color: var(--color-gold);
     display: inline-block;
@@ -72,12 +73,22 @@
   right: unset;
   top: unset;
   opacity: 1 !important;
+  &.swiper-button-disabled {
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  &:hover {
+    &::before {
+      background-color: var(--color-black);
+    }
+  }
   &::before {
     content: "";
     position: absolute;
     inset: 1px;
     background-color: rgb(33, 28, 25);
     border-radius: 50%;
+    transition: all 0.3s ease;
   }
   .icon {
     position: relative;
