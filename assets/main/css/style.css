@@ -990,6 +990,49 @@ body {
   font-size: 0;
 }
 
+#modalMenu .modal-content {
+  background-color: transparent;
+  border: none;
+}
+#modalMenu .modal-header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+#modalMenu .btn-close {
+  background: none;
+  opacity: 1;
+  padding: 0;
+  margin: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  background: linear-gradient(270deg, #d9af6c 0%, #ff8d28 47.6%, #735d39 100%);
+  border-radius: 50%;
+  position: relative;
+}
+#modalMenu .btn-close::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background-color: rgb(33, 28, 25);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+#modalMenu .btn-close svg {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  z-index: 3;
+}
+#modalMenu .btn-close svg path {
+  color: var(--color-gold);
+  stroke-width: 1px;
+}
+
 .lightpick {
   --color-stroke: #ccc;
   --color-bg: #fff;
