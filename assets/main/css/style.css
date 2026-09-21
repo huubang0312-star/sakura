@@ -1933,3 +1933,62 @@ body {
 .make-flower .flower-item:nth-child(3) {
   right: 5%;
 }
+
+.glow {
+  position: relative;
+  background-image: url("../../images/del/intro-cover.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(33, 28, 25, 0) 0%, #211c19 100%);
+  z-index: 1;
+}
+.glow-inner {
+  max-width: calc(100% - 64px);
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  border-left: 1px solid var(--color-line);
+  border-right: 1px solid var(--color-line);
+  position: relative;
+  z-index: 3;
+}
+.glow-heading {
+  max-width: 50%;
+  width: 100%;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+  padding-left: 118px;
+}
+.glow-logo {
+  margin-bottom: 24px;
+}
+.glow-logo img {
+  height: 33px;
+  width: auto;
+}
+.glow-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+  max-width: calc(100% - 236px);
+  width: 100%;
+  margin: 0 auto;
+}
+.glow-img {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 24px;
+}
+.glow-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
