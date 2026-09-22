@@ -515,6 +515,20 @@
   image-rendering: auto;
 }
 
+.glightbox-container .gslide-description {
+  background-color: transparent;
+  text-align: center;
+}
+
+.glightbox-container .gslide-title {
+  margin: 12px 0 0;
+  color: var(--color-gold);
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
 .visually-hidden {
   position: absolute !important;
   width: 1px !important;
