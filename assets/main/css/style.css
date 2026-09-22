@@ -1632,7 +1632,7 @@ body {
 @media (max-width: 767px) {
   .section-contact.layout-contact {
     padding: 0 20px;
-    min-height: 1400px;
+    min-height: 1300px;
   }
 }
 .section-contact.layout-contact::before {
