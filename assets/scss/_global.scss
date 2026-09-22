@@ -9,12 +9,44 @@
   padding: 12px 24px;
   height: 44px;
   width: max-content;
-
-  background: linear-gradient(270deg, #d9af6c 0%, #ff8d28 47.6%, #735d39 100%);
-
+  background-color: var(--color-black);
   border-radius: 22px;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+
+  &:hover,
+  &:focus-visible {
+    &::before {
+      background-color: var(--color-gold);
+    }
+
+    span {
+      color: var(--color-black);
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: max(200%, 240px);
+    aspect-ratio: 1;
+    background: linear-gradient(
+      135deg,
+      #d9af6c 0%,
+      #ff8d28 25%,
+      #735d39 50%,
+      #ff8d28 75%,
+      #d9af6c 100%
+    );
+    transform: translate(-50%, -50%);
+    animation: button-gradient-spin 3s linear infinite;
+    pointer-events: none;
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -22,7 +54,9 @@
     background-color: var(--color-black);
     border-radius: 21px;
     z-index: 2;
+    transition: background-color 0.35s ease;
   }
+
   span {
     font-size: 12px;
     line-height: 15px;
@@ -32,6 +66,19 @@
     display: inline-block;
     position: relative;
     z-index: 3;
+    transition: color 0.35s ease;
+  }
+}
+
+@keyframes button-gradient-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button-global::after {
+    animation: none;
   }
 }
 .underline-hover {
