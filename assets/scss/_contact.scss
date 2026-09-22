@@ -21,8 +21,7 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  padding:
-    calc(var(--space-48) + 76px) var(--space-24)
+  padding: calc(var(--space-48) + 76px) var(--space-24)
     calc(var(--space-48) + 10vh);
   overflow: hidden;
   &.layout-contact {
@@ -38,6 +37,10 @@
     background-attachment: fixed;
     padding: 0 32px;
     min-height: 120vh;
+    @media (max-width: 767px) {
+      padding: 0 20px;
+      min-height: 1300px;
+    }
     &::before {
       content: "";
       position: absolute;
@@ -46,6 +49,10 @@
       width: 1px;
       height: calc(80%);
       background-color: var(--color-line);
+      @media (max-width: 767px) {
+        left: 20px;
+        height: calc(100% - 20vh - 4px);
+      }
     }
     &::after {
       content: "";
@@ -55,6 +62,10 @@
       width: 1px;
       height: calc(80%);
       background-color: var(--color-line);
+      @media (max-width: 767px) {
+        right: 20px;
+        height: calc(100% - 20vh - 4px);
+      }
     }
     // min-height: auto;
     // &::before {
@@ -71,8 +82,23 @@
       right: 32px;
       bottom: 20vh;
       z-index: 3;
+
       img {
+        display: block;
         width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 767px) {
+        left: 20px;
+        right: 20px;
+
+        img {
+          display: block;
+          width: 100%;
+          height: auto;
+          aspect-ratio: 426 / 21; // đổi thành đúng tỉ lệ file mobile nếu khác desktop
+        }
       }
     }
     .form-contact {
@@ -90,8 +116,20 @@
       grid-template-columns: 1fr 1fr;
       padding: 0 118px;
       margin-top: -20vh;
+      @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+        padding: 64px 20px;
+        gap: 40px;
+      }
     }
     .contact-box {
+      @media (max-width: 767px) {
+        max-width: 100%;
+        width: 100%;
+        .desc {
+          width: 100%;
+        }
+      }
       .logo {
         margin-bottom: 12px;
       }
@@ -99,6 +137,10 @@
         font-size: 120px;
         line-height: 100px;
         margin-bottom: 12px;
+        @media (max-width: 767px) {
+          font-size: 64px;
+          line-height: 1;
+        }
       }
       .desc {
         margin-bottom: 40px;

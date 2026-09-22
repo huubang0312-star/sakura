@@ -3,7 +3,7 @@ import {
   customDropdown,
   createFilterTab,
   getDateLightPick,
-  contact
+  contact,
 } from "../../main/js/global.min.js";
 
 const $ = jQuery;
@@ -51,8 +51,8 @@ function initParallaxSwiper(swiperEl, options = {}) {
           if (image) image.style.transition = `${speed}ms ${easing}`;
         });
       },
-      ...(options.on || {})
-    }
+      ...(options.on || {}),
+    },
   });
 }
 
@@ -66,8 +66,8 @@ function initSwiper() {
   const swiperParallax = initParallaxSwiper(swiperEl, {
     navigation: {
       nextEl: containerSwiperEl.querySelector(".swiper-button-next"),
-      prevEl: containerSwiperEl.querySelector(".swiper-button-prev")
-    }
+      prevEl: containerSwiperEl.querySelector(".swiper-button-prev"),
+    },
   });
 }
 function heroCover() {
@@ -117,8 +117,8 @@ function heroCover() {
         trigger: hero,
         start: "top+=10% top",
         end: "+=125%",
-        scrub: true
-      }
+        scrub: true,
+      },
     });
 
     return () => tween.kill();
@@ -133,8 +133,8 @@ function heroCover() {
         trigger: hero,
         start: "top top",
         end: "+=100%",
-        scrub: true
-      }
+        scrub: true,
+      },
     });
 
     return () => tween.kill();
@@ -199,7 +199,7 @@ function headerMobile() {
 
       const subMenu = this.parentElement.querySelector(".sub-menu");
       const allSubMenus = Array.from(
-        document.querySelectorAll("#header .sub-menu")
+        document.querySelectorAll("#header .sub-menu"),
       ).filter((el) => el !== subMenu);
 
       allSubMenus.forEach((el) => {
@@ -226,7 +226,7 @@ function headerMobile() {
             }
             subMenu.removeEventListener("transitionend", handler);
           },
-          { once: true }
+          { once: true },
         );
       }
     });
@@ -245,8 +245,8 @@ function intro() {
         start: "top 95%",
         end: "+=600",
         scrub: true,
-        markers: false
-      }
+        markers: false,
+      },
     });
   }
 }
@@ -290,16 +290,16 @@ function animationBox() {
       ? box.closest(".section-branch__card")
       : null;
     const branchTitle = branchCard?.querySelector(
-      ".section-branch__content h3"
+      ".section-branch__content h3",
     );
     const branchButton = branchCard?.querySelector(
-      ".section-branch__content .button-global"
+      ".section-branch__content .button-global",
     );
     const splitBranchTitle = branchTitle
       ? new SplitText(branchTitle, {
           type: "words, chars",
           wordsClass: "el-word",
-          charsClass: "el-char"
+          charsClass: "el-char",
         })
       : null;
 
@@ -318,8 +318,8 @@ function animationBox() {
         start: "top 65%",
         toggleActions: "play none none none",
         once: true,
-        invalidateOnRefresh: true
-      }
+        invalidateOnRefresh: true,
+      },
     });
 
     timeline.fromTo(
@@ -328,8 +328,8 @@ function animationBox() {
       {
         clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
         duration: 1,
-        ease: "power1.out"
-      }
+        ease: "power1.out",
+      },
     );
 
     if (splitBranchTitle) {
@@ -338,7 +338,7 @@ function animationBox() {
         y: 0,
         duration: 0.3,
         stagger: 0.05,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     }
 
@@ -347,7 +347,7 @@ function animationBox() {
         autoAlpha: 1,
         y: 0,
         duration: 0.75,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     }
   });
@@ -370,15 +370,15 @@ function animationText() {
       const splitHeading = new SplitText(headingElement, {
         type: "words, chars",
         wordsClass: "el-word",
-        charsClass: "el-char"
+        charsClass: "el-char",
       });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: headingElement,
-          start: "top 80%"
+          start: "top 80%",
           // markers: true,
-        }
+        },
       });
 
       // Logo chạy đầu tiên
@@ -387,7 +387,7 @@ function animationText() {
           y: 20,
           opacity: 0,
           duration: 0.4,
-          ease: "power2.out"
+          ease: "power2.out",
         });
       }
 
@@ -398,9 +398,9 @@ function animationText() {
           opacity: 0,
           duration: 0.3,
           stagger: 0.05,
-          ease: "power2.out"
+          ease: "power2.out",
         },
-        logo ? "-=0.15" : 0
+        logo ? "-=0.15" : 0,
       );
 
       if (descElement) {
@@ -408,7 +408,7 @@ function animationText() {
 
         const splitDescription = new SplitText(descElement, {
           type: "lines",
-          linesClass: "el-line"
+          linesClass: "el-line",
         });
 
         tl.from(
@@ -418,9 +418,9 @@ function animationText() {
             opacity: 0,
             duration: 0.35,
             stagger: 0.1,
-            ease: "power2.out"
+            ease: "power2.out",
           },
-          "-=0.15"
+          "-=0.15",
         );
       }
 
@@ -428,7 +428,7 @@ function animationText() {
         tl.from(
           button,
           { y: 20, opacity: 0, duration: 0.4, ease: "power2.out" },
-          "-=0.15"
+          "-=0.15",
         );
       }
 
@@ -444,9 +444,9 @@ function animationText() {
               autoAlpha: 1,
               duration: 0.75,
               stagger: 0.18,
-              ease: "power2.out"
+              ease: "power2.out",
             },
-            "+=0.12"
+            "+=0.12",
           );
         }
       }
@@ -465,8 +465,8 @@ function animationText() {
         scrollTrigger: {
           trigger: btn,
           start: "top 90%",
-          once: true
-        }
+          once: true,
+        },
       });
     });
 
@@ -482,8 +482,8 @@ function animationText() {
         scrollTrigger: {
           trigger: form,
           start: "top 85%",
-          once: true
-        }
+          once: true,
+        },
       });
     });
 
@@ -503,8 +503,8 @@ function animationText() {
         scrollTrigger: {
           trigger: group,
           start: "top 90%",
-          once: true
-        }
+          once: true,
+        },
       });
     });
   });
@@ -519,14 +519,14 @@ function slider() {
       spaceBetween: 20,
       navigation: {
         nextEl: parent.querySelector(".swiper-button-next"),
-        prevEl: parent.querySelector(".swiper-button-prev")
+        prevEl: parent.querySelector(".swiper-button-prev"),
       },
       breakpoints: {
         768: {
           slidesPerView: 3.4,
-          spaceBetween: 24
-        }
-      }
+          spaceBetween: 24,
+        },
+      },
     });
   });
 }
@@ -587,18 +587,18 @@ function animationMake() {
         end: () => "+=" + getMaxTravel(),
         pin: true,
         scrub: 1,
-        invalidateOnRefresh: true
+        invalidateOnRefresh: true,
         // markers: true,
-      }
+      },
     });
 
     tl.to(
       items,
       {
         y: () => -getMaxTravel(),
-        duration: 1
+        duration: 1,
       },
-      0
+      0,
     );
 
     const flowerScale = [1.4, 1.6, 1.3];
@@ -609,15 +609,15 @@ function animationMake() {
         flower,
         {
           scale: flowerScale[i] ?? 1.4,
-          filter: `blur(${flowerBlur[i] ?? 6}px)`
+          filter: `blur(${flowerBlur[i] ?? 6}px)`,
         },
         {
           scale: 1,
           filter: "blur(0px)",
           duration: 1,
-          transformOrigin: "50% 50%"
+          transformOrigin: "50% 50%",
         },
-        0
+        0,
       );
     });
     makeMouseParallax(section, items);
@@ -635,12 +635,12 @@ function makeMouseParallax(section, items) {
       const setters = [...items].map((item) => ({
         x: gsap.quickTo(item, "xPercent", {
           duration: 0.8,
-          ease: "power3.out"
+          ease: "power3.out",
         }),
         y: gsap.quickTo(item, "yPercent", {
           duration: 0.8,
-          ease: "power3.out"
-        })
+          ease: "power3.out",
+        }),
       }));
 
       const onMove = (e) => {
@@ -668,6 +668,6 @@ function makeMouseParallax(section, items) {
         section.removeEventListener("mouseleave", onLeave);
         gsap.set(items, { xPercent: 0, yPercent: 0 });
       };
-    }
+    },
   );
 }
