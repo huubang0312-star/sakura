@@ -9,6 +9,7 @@
   position: relative;
   @media (max-width: 767px) {
     padding: 120px 20px 200px;
+    background-attachment: scroll;
   }
   &-line {
     position: absolute;
@@ -24,15 +25,17 @@
     }
     &.line-left {
       width: 1px;
-      height: 100%;
+      height: auto;
       background-color: var(--color-line);
       top: 0px;
+      bottom: 0;
     }
     &.line-right {
       width: 1px;
-      height: 100%;
+      height: auto;
       background-color: var(--color-line);
       top: 0px;
+      bottom: 0;
       left: auto;
       right: 32px;
       @media (max-width: 767px) {
@@ -43,7 +46,15 @@
       bottom: 0;
     }
     img {
+      display: block;
       width: 100%;
+    }
+
+    @media (max-width: 767px) {
+      &.line-top img,
+      &.line-bottom img {
+        aspect-ratio: 426 / 21;
+      }
     }
   }
   &::before {

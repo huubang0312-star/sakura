@@ -11,6 +11,10 @@
   overflow: hidden;
   padding-top: 100px;
   @media (max-width: 767px) {
+    --intro-mobile-artwork-height: calc(4.92958vw - 1.97183px);
+    --intro-mobile-artwork-join: calc(
+      20px + var(--intro-mobile-artwork-height)
+    );
   }
   &::before {
     content: "";
@@ -47,6 +51,10 @@
       left: 20px;
       right: 20px;
       top: 120px;
+
+      img {
+        aspect-ratio: 426 / 21;
+      }
     }
     img {
       width: 100%;
@@ -68,9 +76,8 @@
       height: calc(100% - 40px);
       background-color: var(--color-line);
       @media (max-width: 767px) {
-        top: 36px;
-        height: 100%;
-        height: calc(100% + 36px);
+        top: var(--intro-mobile-artwork-join);
+        height: calc(100% + var(--intro-mobile-artwork-join));
       }
     }
     &::before {
