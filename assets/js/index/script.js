@@ -309,7 +309,7 @@ function animationBox() {
     }
 
     if (branchButton) {
-      gsap.set(branchButton, { autoAlpha: 0 });
+      gsap.set(branchButton, { autoAlpha: 0, y: 20 });
     }
 
     const timeline = gsap.timeline({
@@ -345,7 +345,8 @@ function animationBox() {
     if (branchButton) {
       timeline.to(branchButton, {
         autoAlpha: 1,
-        duration: 0.4,
+        y: 0,
+        duration: 0.75,
         ease: "power2.out",
       });
     }
@@ -360,6 +361,11 @@ function animationText() {
       const logo = wrapper.querySelector(".el-logo");
       const descElement = wrapper.querySelector(".el-desc");
       const button = wrapper.querySelector(".el-button");
+      const fadeButtonGroup = headingElement
+        .closest(".section-contact")
+        ?.querySelector(".el-fade-buttons");
+
+      gsap.set(headingElement, { autoAlpha: 1 });
 
       const splitHeading = new SplitText(headingElement, {
         type: "words, chars",
@@ -425,6 +431,25 @@ function animationText() {
           "-=0.15",
         );
       }
+
+      if (fadeButtonGroup && !fadeButtonGroup.dataset.revealInitialized) {
+        fadeButtonGroup.dataset.revealInitialized = true;
+        const fadeButtons = fadeButtonGroup.querySelectorAll(".button-global");
+
+        if (fadeButtons.length) {
+          tl.to(
+            fadeButtons,
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.75,
+              stagger: 0.18,
+              ease: "power2.out",
+            },
+            "+=0.12",
+          );
+        }
+      }
     });
 
     // Button chạy riêng, không nằm trong timeline của heading
@@ -439,6 +464,44 @@ function animationText() {
         ease: "power2.out",
         scrollTrigger: {
           trigger: btn,
+          start: "top 90%",
+          once: true,
+        },
+      });
+    });
+
+    gsap.utils.toArray(".el-form").forEach((form) => {
+      if (form.dataset.revealInitialized) return;
+      form.dataset.revealInitialized = true;
+
+      gsap.to(form, {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: form,
+          start: "top 85%",
+          once: true,
+        },
+      });
+    });
+
+    gsap.utils.toArray(".el-fade-buttons").forEach((group) => {
+      if (group.dataset.revealInitialized) return;
+      group.dataset.revealInitialized = true;
+
+      const buttons = group.querySelectorAll(".button-global");
+      if (!buttons.length) return;
+
+      gsap.to(buttons, {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.75,
+        stagger: 0.18,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: group,
           start: "top 90%",
           once: true,
         },

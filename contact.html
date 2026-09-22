@@ -10,6 +10,7 @@
       content="Book your Sakura Massage experience in Da Nang."
     />
 
+    <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/libs/lightpick.min.css" />
     <link
       rel="stylesheet"
@@ -20,32 +21,76 @@
       href="https://cdn.jsdelivr.net/npm/flag-icons@7.5.0/css/flag-icons.min.css"
     />
     <link rel="stylesheet" href="./assets/fonts/Montserrat/font.css" />
+    <link rel="stylesheet" href="./assets/fonts/Idiqlat-ExtraLight/font.css" />
     <link rel="stylesheet" href="./assets/main/css/style.min.css" />
   </head>
 
   <body>
+    <header id="header" class="header position-fixed"></header>
+    <script>
+      fetch("./components/header.html", { cache: "no-store" })
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+
+          const currentPath = window.location.pathname || "/";
+          const navLinks = document.querySelectorAll(".header-menu ul>li>a");
+
+          navLinks.forEach((link) => {
+            const linkPath = link.getAttribute("href");
+            if (!linkPath) return;
+
+            let normalizedLinkPath = linkPath;
+            if (normalizedLinkPath.startsWith("./")) {
+              normalizedLinkPath = normalizedLinkPath.substring(1);
+            }
+
+            const currentSegment = currentPath.split("/").pop() || "";
+            const linkSegment = normalizedLinkPath.split("/").pop() || "";
+            const isRootPath =
+              currentPath === "/" ||
+              currentPath.endsWith("/") ||
+              currentSegment === "";
+            const isHomeLink =
+              linkPath === "/" ||
+              linkPath === "./" ||
+              linkPath === "./index.html" ||
+              linkPath === "index.html" ||
+              linkSegment === "index.html";
+            const isMatch =
+              normalizedLinkPath === currentPath ||
+              currentSegment === linkSegment ||
+              (isRootPath && isHomeLink) ||
+              (currentPath.endsWith(normalizedLinkPath) &&
+                normalizedLinkPath !== "/");
+
+            if (isMatch) link.classList.add("active");
+          });
+        });
+    </script>
+
     <main class="contact-page">
       <section class="section-contact" aria-label="Booking Center">
         <div class="contact-wrapper">
           <header class="contact-heading">
-            <h1>Booking Center</h1>
-            <p>
+            <h1 class="font-heading el-title">Booking Center</h1>
+            <p class="el-desc">
               Whether you’re planning a visit, arranging a group booking,<br />
               or selecting the perfect gift, we’re here to help you make it
               effortless.
             </p>
           </header>
 
-          <nav class="contact-menu" aria-label="Massage menus">
-            <a href="#" class="contact-menu__link">
-              Menu Sakura Massage VIP Da Nang
+          <nav class="contact-menu el-fade-buttons" aria-label="Massage menus">
+            <a href="#" class="button-global">
+              <span>Menu Sakura Massage VIP Da Nang</span>
             </a>
-            <a href="#" class="contact-menu__link">
-              Menu New Sakura Da Nang
+            <a href="#" class="button-global">
+              <span>Menu New Sakura Da Nang</span>
             </a>
           </nav>
 
-          <form class="form-contact" action="#" method="post" novalidate>
+          <form class="form-contact el-form" action="#" method="post" novalidate>
             <div class="form-contact__field form-contact__field--location required">
               <label class="visually-hidden" for="contact-location">Sakura</label>
               <input
@@ -347,6 +392,15 @@
       </section>
     </main>
 
+    <footer id="footer"></footer>
+    <script>
+      fetch("./components/footer.html", { cache: "no-store" })
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+
     <script src="./assets/libs/jquery-3.7.1.js"></script>
     <script src="./assets/libs/lenis.min.js"></script>
     <script src="./assets/libs/gsap.min.js"></script>
@@ -357,6 +411,6 @@
     <script src="./assets/libs/moment.min.js"></script>
     <script src="./assets/libs/lightpick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
-    <script type="module" src="./assets/main/js/script.min.js?v=2"></script>
+    <script type="module" src="./assets/main/js/script.min.js?v=3"></script>
   </body>
 </html>
