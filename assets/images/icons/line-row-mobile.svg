@@ -1,14 +1,15 @@
 
-<svg width="427" height="22" viewBox="0 0 427 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="20.5" y="20.5" width="8.09524" height="8.09524" transform="rotate(180 20.5 20.5)" stroke="#C2AE8A"/>
-<rect x="8.59521" y="20.5" width="8.09524" height="8.09524" transform="rotate(180 8.59521 20.5)" stroke="#C2AE8A"/>
-<rect x="8.59521" y="8.59525" width="8.09524" height="8.09524" transform="rotate(180 8.59521 8.59525)" stroke="#C2AE8A"/>
-<rect x="12.4048" y="12.4048" width="3.80952" height="3.80952" transform="rotate(180 12.4048 12.4048)" stroke="#C2AE8A"/>
-<path d="M12.6431 1.45239V8.59525H19.5479" stroke="#C2AE8A"/>
-<path d="M406.5 20.5L16.5 20.5" stroke="#C2AE8A"/>
-<rect width="8.09524" height="8.09524" transform="matrix(1 0 0 -1 406.5 20.5591)" stroke="#C2AE8A"/>
-<rect width="8.09524" height="8.09524" transform="matrix(1 0 0 -1 418.405 20.5591)" stroke="#C2AE8A"/>
-<rect width="8.09524" height="8.09524" transform="matrix(1 0 0 -1 418.405 8.65433)" stroke="#C2AE8A"/>
-<rect width="3.80952" height="3.80952" transform="matrix(1 0 0 -1 414.595 12.4639)" stroke="#C2AE8A"/>
-<path d="M414.357 1.51147V8.65433H407.452" stroke="#C2AE8A"/>
+<svg width="426" height="21" viewBox="0 0 426 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="8.09524" height="8.09524" transform="matrix(-1 0 0 1 20.5 0.5)" stroke="#C2AE8A"/>
+<rect width="8.09524" height="8.09524" transform="matrix(-1 0 0 1 8.59521 0.5)" stroke="#C2AE8A"/>
+<rect width="8.09524" height="8.09524" transform="matrix(-1 0 0 1 8.59521 12.4048)" stroke="#C2AE8A"/>
+<rect width="3.80952" height="3.80952" transform="matrix(-1 0 0 1 12.4048 8.59521)" stroke="#C2AE8A"/>
+<path d="M12.6431 19.5476V12.4048H19.5479" stroke="#C2AE8A"/>
+<rect x="405.5" y="0.5" width="8.09524" height="8.09524" stroke="#C2AE8A"/>
+<rect x="417.405" y="0.5" width="8.09524" height="8.09524" stroke="#C2AE8A"/>
+<rect x="417.405" y="12.4048" width="8.09524" height="8.09524" stroke="#C2AE8A"/>
+<rect x="413.595" y="8.59521" width="3.80952" height="3.80952" stroke="#C2AE8A"/>
+<path d="M413.357 19.5476V12.4048H406.452" stroke="#C2AE8A"/>
+<path d="M404.5 1.50001L251.5 1.5" stroke="#C2AE8A"/>
+<path d="M173.5 0.500013L20.5 0.5" stroke="#C2AE8A"/>
 </svg>
