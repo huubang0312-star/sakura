@@ -1,13 +1,14 @@
-<svg width="336" height="22" viewBox="0 0 336 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="16.5" y="20.5" width="6.47619" height="6.47619" transform="rotate(180 16.5 20.5)" stroke="#C2AE8A"/>
-<rect x="6.97607" y="20.5" width="6.47619" height="6.47619" transform="rotate(180 6.97607 20.5)" stroke="#C2AE8A"/>
-<rect x="6.97607" y="10.9762" width="6.47619" height="6.47619" transform="rotate(180 6.97607 10.9762)" stroke="#C2AE8A"/>
-<rect x="10.0239" y="14.0239" width="3.04762" height="3.04762" transform="rotate(180 10.0239 14.0239)" stroke="#C2AE8A"/>
-<path d="M10.2145 5.26191V10.9762H15.7383" stroke="#C2AE8A"/>
-<rect width="6.47619" height="6.47619" transform="matrix(1 0 0 -1 319.5 20.5)" stroke="#C2AE8A"/>
-<rect width="6.47619" height="6.47619" transform="matrix(1 0 0 -1 329.024 20.5)" stroke="#C2AE8A"/>
-<rect width="6.47619" height="6.47619" transform="matrix(1 0 0 -1 329.024 10.9762)" stroke="#C2AE8A"/>
-<rect width="3.04762" height="3.04762" transform="matrix(1 0 0 -1 325.976 14.0239)" stroke="#C2AE8A"/>
-<path d="M325.786 5.26191V10.9762H320.262" stroke="#C2AE8A"/>
-<path d="M319.5 20.5L16.5 20.5" stroke="#C2AE8A"/>
+
+<svg width="469" height="18" viewBox="0 0 469 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="16.5" y="16.5" width="6.47619" height="6.47619" transform="rotate(180 16.5 16.5)" stroke="#C2AE8A"/>
+<rect x="6.97607" y="16.5" width="6.47619" height="6.47619" transform="rotate(180 6.97607 16.5)" stroke="#C2AE8A"/>
+<rect x="6.97607" y="6.9762" width="6.47619" height="6.47619" transform="rotate(180 6.97607 6.9762)" stroke="#C2AE8A"/>
+<rect x="10.0239" y="10.0239" width="3.04762" height="3.04762" transform="rotate(180 10.0239 10.0239)" stroke="#C2AE8A"/>
+<path d="M10.2145 1.26191V6.9762H15.7383" stroke="#C2AE8A"/>
+<path d="M452.5 16.5L16.5 16.5" stroke="#C2AE8A"/>
+<rect width="6.47619" height="6.47619" transform="matrix(1 0 0 -1 452.5 16.5)" stroke="#C2AE8A"/>
+<rect width="6.47619" height="6.47619" transform="matrix(1 0 0 -1 462.024 16.5)" stroke="#C2AE8A"/>
+<rect width="6.47619" height="6.47619" transform="matrix(1 0 0 -1 462.024 6.9762)" stroke="#C2AE8A"/>
+<rect width="3.04762" height="3.04762" transform="matrix(1 0 0 -1 458.976 10.0239)" stroke="#C2AE8A"/>
+<path d="M458.786 1.26191V6.9762H453.262" stroke="#C2AE8A"/>
 </svg>
