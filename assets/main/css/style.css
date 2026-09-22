@@ -2455,20 +2455,28 @@ body {
   height: 100%;
   object-fit: cover;
 }
+.make-flower {
+  position: absolute;
+  inset: 0;
+}
 .make-flower .flower-item {
   position: absolute;
   z-index: 1;
+  top: var(--fy, 50%);
+  left: var(--fx, 50%);
+  transform: translate(-50%, -50%);
+  will-change: transform, filter;
+  width: calc(80px * var(--fscale, 1));
 }
-.make-flower .flower-item:nth-child(1) {
-  top: 25%;
-  right: 40%;
+@media (max-width: 767px) {
+  .make-flower .flower-item {
+    width: calc(36px * var(--fscale, 1));
+  }
 }
-.make-flower .flower-item:nth-child(2) {
-  top: 70%;
-  left: 30%;
-}
-.make-flower .flower-item:nth-child(3) {
-  right: 5%;
+.make-flower .flower-item img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .section-branch {

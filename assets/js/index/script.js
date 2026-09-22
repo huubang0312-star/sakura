@@ -581,16 +581,145 @@ function slider() {
 //     });
 //   });
 // }
+// function animationMake() {
+//   document.querySelectorAll(".make").forEach((section) => {
+//     if (section.dataset.revealInitialized) return;
+//     section.dataset.revealInitialized = true;
+
+//     const items = section.querySelectorAll(".make-item");
+//     const flowers = section.querySelectorAll(".flower-item");
+//     if (!items.length) return;
+
+//     items.forEach((item, i) => item.style.setProperty("--i", i));
+
+//     const getMaxTravel = () =>
+//       Math.max(...[...items].map((it) => it.offsetTop + it.offsetHeight));
+
+//     const tl = gsap.timeline({
+//       defaults: { ease: "none" },
+//       scrollTrigger: {
+//         trigger: section,
+//         start: "top top",
+//         end: () => "+=" + getMaxTravel(),
+//         pin: true,
+//         scrub: 1,
+//         invalidateOnRefresh: true,
+//         // markers: true,
+//       },
+//     });
+
+//     tl.to(
+//       items,
+//       {
+//         y: () => -getMaxTravel(),
+//         duration: 1,
+//       },
+//       0,
+//     );
+
+//     const flowerScale = [1.4, 1.6, 1.3];
+//     const flowerBlur = [6, 10, 4];
+
+//     flowers.forEach((flower, i) => {
+//       tl.fromTo(
+//         flower,
+//         {
+//           scale: flowerScale[i] ?? 1.4,
+//           filter: `blur(${flowerBlur[i] ?? 6}px)`,
+//         },
+//         {
+//           scale: 1,
+//           filter: "blur(0px)",
+//           duration: 1,
+//           transformOrigin: "50% 50%",
+//         },
+//         0,
+//       );
+//     });
+//     makeMouseParallax(section, items);
+//   });
+// }
+
 function animationMake() {
   document.querySelectorAll(".make").forEach((section) => {
     if (section.dataset.revealInitialized) return;
     section.dataset.revealInitialized = true;
 
     const items = section.querySelectorAll(".make-item");
-    const flowers = section.querySelectorAll(".flower-item");
     if (!items.length) return;
 
     items.forEach((item, i) => item.style.setProperty("--i", i));
+
+    // --- Clone thêm flower ngẫu nhiên ---
+    const flowerGroup = section.querySelector(".make-flower");
+    const baseFlowers = flowerGroup
+      ? [...flowerGroup.querySelectorAll(".flower-item")]
+      : [];
+
+    if (flowerGroup && baseFlowers.length) {
+      const EXTRA_COUNT = 5; // số flower muốn thêm
+      const TOTAL = baseFlowers.length + EXTRA_COUNT;
+
+      // Vùng được phép đặt hoa, tính theo % section (chừa mép để hoa không bị cắt)
+      const AREA = { xMin: 5, xMax: 95, yMin: 5, yMax: 95 };
+
+      // Chia vùng thành lưới cols x rows sao cho đủ ô cho TOTAL bông
+      const cols = Math.ceil(Math.sqrt(TOTAL));
+      const rows = Math.ceil(TOTAL / cols);
+
+      const cellW = (AREA.xMax - AREA.xMin) / cols;
+      const cellH = (AREA.yMax - AREA.yMin) / rows;
+
+      // Tạo danh sách toạ độ tâm từng ô, rồi xáo trộn để vị trí không theo hàng lối cứng
+      const cells = [];
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          cells.push({
+            x: AREA.xMin + cellW * (c + 0.5),
+            y: AREA.yMin + cellH * (r + 0.5),
+          });
+        }
+      }
+      gsap.utils.shuffle(cells);
+
+      const randBetween = (min, max) => Math.random() * (max - min) + min;
+
+      // Jitter nhẹ trong ô để không bị đều tăm tắp như lưới, nhưng vẫn không chạm ô kế bên
+      const jitterX = cellW * 0.3;
+      const jitterY = cellH * 0.3;
+
+      const getSpot = (cell) => ({
+        x: cell.x + randBetween(-jitterX, jitterX),
+        y: cell.y + randBetween(-jitterY, jitterY),
+      });
+
+      // Gán vị trí + kích thước ngẫu nhiên cho flower gốc trước (mỗi bông 1 ô riêng)
+      baseFlowers.forEach((f, i) => {
+        const spot = getSpot(cells[i]);
+        f.style.setProperty("--fx", spot.x + "%");
+        f.style.setProperty("--fy", spot.y + "%");
+        f.style.setProperty("--fscale", gsap.utils.random(0.7, 1.3).toFixed(2));
+      });
+
+      for (let i = 0; i < EXTRA_COUNT; i++) {
+        // clone ngẫu nhiên từ 1 trong các flower gốc (đổi ảnh)
+        const source =
+          baseFlowers[Math.floor(Math.random() * baseFlowers.length)];
+        const clone = source.cloneNode(true);
+
+        const spot = getSpot(cells[baseFlowers.length + i]);
+        clone.style.setProperty("--fx", spot.x + "%");
+        clone.style.setProperty("--fy", spot.y + "%");
+        clone.style.setProperty(
+          "--fscale",
+          gsap.utils.random(0.7, 1.3).toFixed(2),
+        );
+
+        flowerGroup.appendChild(clone);
+      }
+    }
+
+    const flowers = section.querySelectorAll(".flower-item"); // full list, gồm cả clone
 
     const getMaxTravel = () =>
       Math.max(...[...items].map((it) => it.offsetTop + it.offsetHeight));
@@ -608,6 +737,7 @@ function animationMake() {
       },
     });
 
+    // Các item chạy lên
     tl.to(
       items,
       {
@@ -617,25 +747,53 @@ function animationMake() {
       0,
     );
 
-    const flowerScale = [1.4, 1.6, 1.3];
-    const flowerBlur = [6, 10, 4];
+    // Flower lần lượt hiện, xen kẽ ngẫu nhiên kiểu blur / zoom
+    const flowerList = [...flowers]; // giữ nguyên thứ tự DOM: gốc trước, clone sau
+    // const flowerList = gsap.utils.shuffle([...flowers]); // dùng dòng này nếu muốn random luôn thứ tự xuất hiện
 
-    flowers.forEach((flower, i) => {
-      tl.fromTo(
-        flower,
-        {
-          scale: flowerScale[i] ?? 1.4,
-          filter: `blur(${flowerBlur[i] ?? 6}px)`,
-        },
-        {
-          scale: 1,
-          filter: "blur(0px)",
-          duration: 1,
-          transformOrigin: "50% 50%",
-        },
-        0,
-      );
+    // Chỉ bông đầu tiên hiện sẵn, các bông còn lại ẩn cho đến lượt của nó
+    flowerList.forEach((flower, i) => {
+      gsap.set(flower, { autoAlpha: i === 0 ? 1 : 0 });
     });
+
+    // Timeline riêng cho phần flower, chạy suốt từ đầu đến cuối quãng scroll
+    const remaining = flowerList.slice(1); // bỏ bông đầu ra, nó không cần animate hiện/ẩn
+    const step = remaining.length ? 1 / remaining.length : 0; // chia đều timeline cho từng bông còn lại
+
+    remaining.forEach((flower, i) => {
+      const isBlurType = Math.random() < 0.5; // 50% blur, 50% zoom
+      const duration = gsap.utils.random(0.35, 0.5); // ngắn để không đè bông kế tiếp
+      const startAt = i * step; // bông sau luôn bắt đầu sau bông trước
+
+      if (isBlurType) {
+        // Nhóm blur: từ ẩn + mờ → hiện + nét, scale giữ nguyên
+        const blurFrom = gsap.utils.random(4, 12);
+
+        tl.fromTo(
+          flower,
+          { autoAlpha: 0, scale: 1, filter: `blur(${blurFrom}px)` },
+          { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration },
+          startAt,
+        );
+      } else {
+        // Nhóm zoom: từ ẩn + to → hiện + về đúng size, không blur
+        const scaleFrom = gsap.utils.random(1.3, 1.8);
+
+        tl.fromTo(
+          flower,
+          { autoAlpha: 0, scale: scaleFrom, filter: "blur(0px)" },
+          {
+            autoAlpha: 1,
+            scale: 1,
+            filter: "blur(0px)",
+            duration,
+            transformOrigin: "50% 50%",
+          },
+          startAt,
+        );
+      }
+    });
+
     makeMouseParallax(section, items);
   });
 }
