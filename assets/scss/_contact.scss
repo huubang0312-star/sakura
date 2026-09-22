@@ -25,6 +25,7 @@
     calc(var(--space-48) + 10vh);
   overflow: hidden;
   &.layout-contact {
+    --contact-artwork-bottom: 20vh;
     position: relative;
     background-image:
       linear-gradient(rgb(0 0 0 / 0.6), rgb(0 0 0 / 0.6)),
@@ -40,6 +41,7 @@
     @media (max-width: 767px) {
       padding: 0 20px;
       min-height: 1300px;
+      background-attachment: scroll;
     }
     &::before {
       content: "";
@@ -51,7 +53,8 @@
       background-color: var(--color-line);
       @media (max-width: 767px) {
         left: 20px;
-        height: calc(100% - 20vh - 4px);
+        bottom: var(--contact-artwork-bottom);
+        height: auto;
       }
     }
     &::after {
@@ -64,7 +67,8 @@
       background-color: var(--color-line);
       @media (max-width: 767px) {
         right: 20px;
-        height: calc(100% - 20vh - 4px);
+        bottom: var(--contact-artwork-bottom);
+        height: auto;
       }
     }
     // min-height: auto;
@@ -80,7 +84,7 @@
       position: absolute;
       left: 32px;
       right: 32px;
-      bottom: 20vh;
+      bottom: var(--contact-artwork-bottom);
       z-index: 3;
       // background-color: red;
       img {

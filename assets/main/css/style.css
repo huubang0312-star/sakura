@@ -1619,6 +1619,7 @@ body {
   overflow: hidden;
 }
 .section-contact.layout-contact {
+  --contact-artwork-bottom: 20vh;
   position: relative;
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/del/intro-cover.png");
   background-size: cover;
@@ -1634,6 +1635,7 @@ body {
   .section-contact.layout-contact {
     padding: 0 20px;
     min-height: 1300px;
+    background-attachment: scroll;
   }
 }
 .section-contact.layout-contact::before {
@@ -1648,7 +1650,8 @@ body {
 @media (max-width: 767px) {
   .section-contact.layout-contact::before {
     left: 20px;
-    height: calc(100% - 20vh - 4px);
+    bottom: var(--contact-artwork-bottom);
+    height: auto;
   }
 }
 .section-contact.layout-contact::after {
@@ -1663,14 +1666,15 @@ body {
 @media (max-width: 767px) {
   .section-contact.layout-contact::after {
     right: 20px;
-    height: calc(100% - 20vh - 4px);
+    bottom: var(--contact-artwork-bottom);
+    height: auto;
   }
 }
 .section-contact.layout-contact .contact-line-row {
   position: absolute;
   left: 32px;
   right: 32px;
-  bottom: 20vh;
+  bottom: var(--contact-artwork-bottom);
   z-index: 3;
 }
 .section-contact.layout-contact .contact-line-row img {
