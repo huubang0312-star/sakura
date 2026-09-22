@@ -82,21 +82,22 @@
       right: 32px;
       bottom: 20vh;
       z-index: 3;
-      // background-color: red;
-      height: auto;
-      // width: calc(100% - 40px);
+
       img {
+        display: block;
         width: 100%;
         height: auto;
-        object-fit: cover;
       }
+
       @media (max-width: 767px) {
         left: 20px;
         right: 20px;
+
         img {
           display: block;
           width: 100%;
           height: auto;
+          aspect-ratio: 426 / 21; // đổi thành đúng tỉ lệ file mobile nếu khác desktop
         }
       }
     }

@@ -1671,12 +1671,11 @@ body {
   right: 32px;
   bottom: 20vh;
   z-index: 3;
-  height: auto;
 }
 .section-contact.layout-contact .contact-line-row img {
+  display: block;
   width: 100%;
   height: auto;
-  object-fit: cover;
 }
 @media (max-width: 767px) {
   .section-contact.layout-contact .contact-line-row {
@@ -1687,6 +1686,7 @@ body {
     display: block;
     width: 100%;
     height: auto;
+    aspect-ratio: 426/21;
   }
 }
 .section-contact.layout-contact .form-contact {
