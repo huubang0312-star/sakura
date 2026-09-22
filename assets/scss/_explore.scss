@@ -7,16 +7,30 @@
     border-left: 1px solid var(--color-line);
     border-right: 1px solid var(--color-line);
     padding-top: 140px;
+    @media (max-width: 767px) {
+      max-width: calc(100% - 40px);
+      padding-top: 64px;
+    }
   }
   &-bg {
     right: 0;
     top: 0;
+    @media (max-width: 767px) {
+      width: 150px;
+      height: 100px;
+      top: 0%;
+      z-index: -1;
+    }
   }
   &-heading {
     margin-left: 118px;
     max-width: 50%;
     width: 100%;
     margin-bottom: 40px;
+    @media (max-width: 767px) {
+      margin-left: 20px;
+      max-width: calc(100% - 20px);
+    }
   }
   &-logo {
     margin-bottom: 24px;
@@ -28,6 +42,10 @@
   &-slider {
     .swiper {
       padding-left: 118px;
+      @media (max-width: 767px) {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
     }
   }
   &-box {
@@ -75,6 +93,12 @@
     justify-content: space-between;
     margin-top: 40px;
     padding-right: 170px;
+    @media (max-width: 767px) {
+      padding: 0 20px;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+    }
   }
   &-pagination {
     gap: 12px;
