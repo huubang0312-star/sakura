@@ -2813,7 +2813,7 @@ body {
 }
 
 .service {
-  padding: 200px 32px;
+  padding: 120px 32px 200px;
   width: 100%;
   margin: 0 auto;
   background-image: url("../../images/del/intro-cover.png");
@@ -2821,6 +2821,51 @@ body {
   background-size: cover;
   background-attachment: fixed;
   position: relative;
+}
+@media (max-width: 767px) {
+  .service {
+    padding: 120px 20px 200px;
+  }
+}
+.service-line {
+  position: absolute;
+  z-index: 3;
+  left: 32px;
+  right: 32px;
+}
+@media (max-width: 767px) {
+  .service-line {
+    left: 0;
+    right: 0;
+  }
+}
+.service-line.line-top {
+  top: 0px;
+}
+.service-line.line-left {
+  width: 1px;
+  height: 100%;
+  background-color: var(--color-line);
+  top: 0px;
+}
+.service-line.line-right {
+  width: 1px;
+  height: 100%;
+  background-color: var(--color-line);
+  top: 0px;
+  left: auto;
+  right: 32px;
+}
+@media (max-width: 767px) {
+  .service-line.line-right {
+    right: 0;
+  }
+}
+.service-line.line-bottom {
+  bottom: 0;
+}
+.service-line img {
+  width: 100%;
 }
 .service::before {
   content: "";
@@ -2830,9 +2875,15 @@ body {
   z-index: 1;
 }
 .service-inner {
-  padding: 0 118px;
+  padding: 100px 118px;
   position: relative;
   z-index: 4;
+}
+@media (max-width: 991px) {
+  .service-inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 .service-heading {
   display: flex;
@@ -2843,11 +2894,23 @@ body {
   margin: 0 auto 100px;
   text-align: center;
 }
+@media (max-width: 767px) {
+  .service-heading {
+    max-width: calc(100% - 40px);
+    margin-bottom: 64px;
+  }
+}
 .service-heading h3 {
   margin-bottom: 16px;
 }
 .service-item {
   margin-bottom: 100px;
+}
+@media (max-width: 767px) {
+  .service-item {
+    margin-bottom: 64px;
+    padding: 0 20px;
+  }
 }
 .service-item:last-child {
   margin-bottom: 0;
@@ -2855,6 +2918,11 @@ body {
 .service-item:last-child .service-content {
   padding-left: 0;
   padding-right: 16.6666666667%;
+}
+@media (max-width: 767px) {
+  .service-item:last-child .service-content {
+    padding-right: 0;
+  }
 }
 .service-content {
   padding-left: 16.6666666667%;
@@ -2864,6 +2932,11 @@ body {
   justify-content: center;
   height: 100%;
 }
+@media (max-width: 767px) {
+  .service-content {
+    padding-left: 0;
+  }
+}
 .service-content .button-global {
   margin-top: 16px;
 }
@@ -2872,6 +2945,11 @@ body {
   border-radius: 24px;
   width: 100%;
   aspect-ratio: 558/408;
+}
+@media (max-width: 991px) {
+  .service .service-image {
+    margin-bottom: 24px;
+  }
 }
 .service .service-image img {
   width: 100%;
