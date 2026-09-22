@@ -1167,6 +1167,7 @@ body {
     max-width: calc(100% - 40px);
     text-align: center;
     gap: 16px;
+    top: 65vh;
   }
 }
 .hero-img {
