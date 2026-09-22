@@ -2797,3 +2797,70 @@ body {
     justify-content: unset;
   }
 }
+
+.service {
+  padding: 200px 32px;
+  width: 100%;
+  margin: 0 auto;
+  background-image: url("../../images/del/intro-cover.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+.service::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(33, 28, 25, 0) 0%, #211c19 100%);
+  z-index: 1;
+}
+.service-inner {
+  padding: 0 118px;
+  position: relative;
+  z-index: 4;
+}
+.service-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
+  flex-direction: column;
+  margin: 0 auto 100px;
+  text-align: center;
+}
+.service-heading h3 {
+  margin-bottom: 16px;
+}
+.service-item {
+  margin-bottom: 100px;
+}
+.service-item:last-child {
+  margin-bottom: 0;
+}
+.service-item:last-child .service-content {
+  padding-left: 0;
+  padding-right: 16.6666666667%;
+}
+.service-content {
+  padding-left: 16.6666666667%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  height: 100%;
+}
+.service-content .button-global {
+  margin-top: 16px;
+}
+.service .service-image {
+  overflow: hidden;
+  border-radius: 24px;
+  width: 100%;
+  aspect-ratio: 558/408;
+}
+.service .service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

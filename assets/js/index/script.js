@@ -360,6 +360,7 @@ function animationText() {
       const wrapper = headingElement.parentElement;
       const logo = wrapper.querySelector(".el-logo");
       const descElement = wrapper.querySelector(".el-desc");
+      const priceElement = wrapper.querySelector(".el-price");
       const button = wrapper.querySelector(".el-button");
       const fadeButtonGroup = headingElement
         .closest(".section-contact")
@@ -418,6 +419,21 @@ function animationText() {
             opacity: 0,
             duration: 0.35,
             stagger: 0.1,
+            ease: "power2.out",
+          },
+          "-=0.15",
+        );
+      }
+
+      if (priceElement) {
+        gsap.set(priceElement, { autoAlpha: 1 }); // phòng trường hợp CSS đang ẩn
+
+        tl.from(
+          priceElement,
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.4,
             ease: "power2.out",
           },
           "-=0.15",
