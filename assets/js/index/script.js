@@ -289,21 +289,19 @@ function intro() {
 }
 function footer() {
   if (!document.querySelector("#footer")) return;
-  if (window.innerWidth > 1024) {
-    const radiusSection = document.querySelector("#footer");
+  const radiusSection = document.querySelector("#footer");
 
-    gsap.to(radiusSection, {
-      borderTopLeftRadius: "100px",
-      borderTopRightRadius: "100px",
-      scrollTrigger: {
-        trigger: radiusSection,
-        start: "top 90%",
-        end: "top 75%",
-        scrub: true,
-        // markers: true,
-      },
-    });
-  }
+  gsap.to(radiusSection, {
+    borderTopLeftRadius: "100px",
+    borderTopRightRadius: "100px",
+    scrollTrigger: {
+      trigger: radiusSection,
+      start: "top 90%",
+      end: "top 75%",
+      scrub: true,
+      // markers: true,
+    },
+  });
 }
 // function animationImage() {
 //   gsap.utils.toArray(".polygon-img-p").forEach((parent) => {
