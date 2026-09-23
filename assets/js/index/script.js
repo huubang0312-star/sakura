@@ -196,6 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
   animationBox();
   animationMake();
   headerMobile();
+  footer();
 });
 
 let isLinkClicked = false;
@@ -282,6 +283,24 @@ function intro() {
         end: "+=600",
         scrub: true,
         markers: false,
+      },
+    });
+  }
+}
+function footer() {
+  if (!document.querySelector("#footer")) return;
+  if (window.innerWidth > 1024) {
+    const radiusSection = document.querySelector("#footer");
+
+    gsap.to(radiusSection, {
+      borderTopLeftRadius: "100px",
+      borderTopRightRadius: "100px",
+      scrollTrigger: {
+        trigger: radiusSection,
+        start: "top 90%",
+        end: "top 75%",
+        scrub: true,
+        // markers: true,
       },
     });
   }
