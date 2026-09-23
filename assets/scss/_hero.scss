@@ -12,10 +12,10 @@
   &-content {
     position: absolute;
     top: 70vh;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    margin-inline: auto;
     width: max-content;
-    z-index: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,10 +47,11 @@
           rgba(0, 0, 0, 0.8) 62.49%,
           rgba(0, 0, 0, 0) 100%
         );
-        // background-color: red;
         width: 150%;
         height: 150%;
-        transform: scale(1.2);
+        transform: scale(
+          1.2
+        ); // vẫn giữ được, vì đây là context riêng của ::before, không ảnh hưởng h2/a
         z-index: 1;
         opacity: 0.8;
       }
@@ -59,13 +60,21 @@
   &-img {
     width: 100%;
     height: 100%;
+    position: relative;
+    z-index: 0;
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
+  &-cover {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
 }
+
 .blind-strip-v {
   position: absolute;
   top: 0;

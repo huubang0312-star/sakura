@@ -1163,10 +1163,10 @@ body {
 .hero-content {
   position: absolute;
   top: 70vh;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin-inline: auto;
   width: max-content;
-  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1207,11 +1207,18 @@ body {
 .hero-img {
   width: 100%;
   height: 100%;
+  position: relative;
+  z-index: 0;
 }
 .hero-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.hero-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
 }
 
 .blind-strip-v {
