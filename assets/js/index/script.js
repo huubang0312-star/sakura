@@ -98,7 +98,7 @@ function heroCover() {
     strip.style.width = stripWidth + 1 + "px";
     strip.style.top = 0;
     strip.style.height = "100%";
-    strip.style.background = "#B69F64";
+    strip.style.background = "#B69F64"; // màu ban đầu
     strip.style.transformOrigin = "left center";
     strip.style.transform = "rotateY(-90deg)";
     strip.style.position = "absolute";
@@ -109,35 +109,69 @@ function heroCover() {
   const mm = gsap.matchMedia();
 
   mm.add("(min-width: 1025px)", () => {
-    const tween = gsap.to(".blind-strip-v", {
-      rotationY: 0,
-      stagger: 0.005,
-      ease: "power3.out",
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: hero,
         start: "top+=10% top",
-        end: "+=125%",
+        end: "+=60%",
         scrub: true,
       },
     });
 
-    return () => tween.kill();
+    tl.to(
+      ".blind-strip-v",
+      {
+        backgroundColor: "#000",
+        stagger: 0.005,
+        ease: "power3.out",
+        duration: 0.4, // đen nhanh hơn, kết thúc sớm hơn khi timeline chạy tới 40%
+      },
+      0,
+    ).to(
+      ".blind-strip-v",
+      {
+        rotationY: 0,
+        stagger: 0.005,
+        ease: "power3.out",
+        duration: 1,
+      },
+      0,
+    );
+
+    return () => tl.kill();
   });
 
   mm.add("(max-width: 1024px)", () => {
-    const tween = gsap.to(".blind-strip-v", {
-      rotationY: 0,
-      stagger: 0.005,
-      ease: "power3.out",
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: hero,
         start: "top top",
-        end: "+=100%",
+        end: "+=50%", // rút ngắn từ 100% xuống 60%
         scrub: true,
       },
     });
 
-    return () => tween.kill();
+    tl.to(
+      ".blind-strip-v",
+      {
+        backgroundColor: "#000",
+        stagger: 0.005,
+        ease: "power3.out",
+        duration: 0.4,
+      },
+      0,
+    ).to(
+      ".blind-strip-v",
+      {
+        rotationY: 0,
+        stagger: 0.005,
+        ease: "power3.out",
+        duration: 1,
+      },
+      0,
+    );
+
+    return () => tl.kill();
   });
 }
 
