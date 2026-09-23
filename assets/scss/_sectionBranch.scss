@@ -2,13 +2,11 @@
   position: relative;
   overflow: hidden;
   padding: calc(var(--space-64) + 72px) var(--space-40) var(--space-80);
-  background:
-    radial-gradient(
-      circle at 50% 18%,
-      rgba(255, 255, 255, 0.045),
-      transparent 34%
-    ),
-    var(--color-black);
+  background-color: var(--color-black);
+  background-image: url("../../images/icons/bg-black.webp");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--color-white);
 }
 
