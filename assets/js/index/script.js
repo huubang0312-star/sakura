@@ -144,11 +144,47 @@ function heroCover() {
 function init() {
   gsap.registerPlugin(ScrollTrigger);
   contact();
+  initContactQrScroll();
   customDropdown();
   createFilterTab();
   slider();
   // getDateLightPick();
 }
+
+function initContactQrScroll() {
+  const qrWidget = document.querySelector(".contact-qr");
+  if (!qrWidget || qrWidget.dataset.scrollInitialized === "true") return;
+
+  qrWidget.dataset.scrollInitialized = "true";
+  let isHidden = false;
+
+  gsap.set(qrWidget, { x: 0, autoAlpha: 1 });
+
+  ScrollTrigger.create({
+    start: 0,
+    end: "max",
+    onUpdate(self) {
+      const shouldHide = self.direction === 1 && self.scroll() > 12;
+      if (shouldHide === isHidden) return;
+
+      isHidden = shouldHide;
+      gsap.to(qrWidget, {
+        x: shouldHide ? 40 : 0,
+        autoAlpha: shouldHide ? 0 : 1,
+        duration: 0.4,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    },
+  });
+}
+
+window.addEventListener("contact-qr:ready", () => {
+  gsap.registerPlugin(ScrollTrigger);
+  contact();
+  initContactQrScroll();
+  ScrollTrigger.refresh();
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   init();

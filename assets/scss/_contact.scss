@@ -521,13 +521,15 @@
 }
 
 .contact-qr {
-  position: absolute;
+  position: fixed;
+  z-index: 50;
   top: 50%;
-  right: clamp(20px, 4vw, 72px);
+  right: clamp(8px, 2vw, 32px);
   display: flex;
   align-items: center;
   gap: 12px;
   transform: translateY(-50%);
+  will-change: transform, opacity;
 }
 
 .contact-qr__label {
@@ -541,18 +543,26 @@
 
 .contact-qr__list {
   display: grid;
-  gap: 24px;
+  gap: 16px;
 }
 
 .contact-qr a,
 .contact-qr img {
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 64px;
+  height: 64px;
 }
 
 .contact-qr__link {
   cursor: zoom-in;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    opacity: 0.65;
+  }
 }
 
 .glightbox-container .gslide-image img {
@@ -595,27 +605,6 @@
     padding-bottom: calc(var(--space-64) + 10vh);
   }
 
-  .contact-qr {
-    position: relative;
-    top: auto;
-    right: auto;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    margin-top: var(--space-32);
-    transform: none;
-  }
-
-  .contact-qr__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .contact-qr__label {
-    writing-mode: initial;
-    transform: none;
-  }
 }
 
 @media (max-width: 767px) {
@@ -637,13 +626,7 @@
     grid-template-columns: 1fr;
   }
 
-  .contact-qr a,
-  .contact-qr img {
-    width: 48px;
-    height: 48px;
-  }
-
-  .contact-qr__list {
-    gap: 16px;
+  .contact-qr {
+    right: 8px;
   }
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <!-- import favicon -->
-    <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./assets/images/favicon.png" type="image/x-icon" />
     <!-- meta -->
     <meta property="og:url" content="" />
     <meta property="og:type" content="website" />
@@ -23,6 +23,10 @@
     <link rel="stylesheet" href="./assets/libs/lenis.css" />
     <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./assets/libs/lightpick.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/css/glightbox.min.css"
+    />
     <link rel="stylesheet" href="./assets/fonts/Montserrat/font.css" />
     <link rel="stylesheet" href="./assets/fonts/Idiqlat-ExtraLight/font.css" />
     <!-- end meta -->
@@ -104,7 +108,7 @@
         <div class="section-branch__container limit-width">
           <div class="section-branch__heading">
             <h2
-              id="section-branch-title"
+              id="section-branch-title" 
               class="heading-2 font-heading el-title"
             >
               Welcome to Massage Sakura
@@ -164,6 +168,16 @@
         </div>
       </section>
     </main>
+
+    <div id="contact-qr-root"></div>
+    <script>
+      fetch("./components/contact-qr.html", { cache: "no-store" })
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("contact-qr-root").innerHTML = data;
+          window.dispatchEvent(new CustomEvent("contact-qr:ready"));
+        });
+    </script>
     <!-- layout -->
     <!-- footer -->
     <script>
@@ -187,8 +201,9 @@
     <script src="./assets/libs/swiper-bundle.min.js"></script>
     <script src="./assets/libs/moment.min.js"></script>
     <script src="./assets/libs/lightpick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
     <!-- import custom js -->
-    <script type="module" src="./assets/main/js/script.min.js"></script>
+    <script type="module" src="./assets/main/js/script.min.js?v=4"></script>
     <!-- <script type="module" src="./assets/main/js/home.min.js"></script> -->
 
     <!-- end import custom js -->

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Booking Center | Sakura Massage</title>
-    <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./assets/images/favicon.png" type="image/x-icon" />
     <meta
       name="description"
       content="Book your Sakura Massage experience in Da Nang."
@@ -447,61 +447,18 @@
           </form>
         </div>
 
-        <aside class="contact-qr" aria-label="Contact via QR code">
-          <span class="contact-qr__label"
-            >Click to select the QR scanning method.</span
-          >
-          <div class="contact-qr__list">
-            <a
-              class="contact-qr__link"
-              href="./assets/images/del/QRcode-telegram.jpg"
-              data-title="Telegram"
-              aria-label="Open contact QR code 1"
-            >
-              <img
-                src="./assets/images/del/QRcode-telegram.jpg"
-                alt="Telegram"
-              />
-            </a>
-            <a
-              class="contact-qr__link"
-              href="./assets/images/del/QRcode-kakaotalk.jpg"
-              data-title="Kakaotalk"
-              aria-label="Open contact QR code 2"
-            >
-              <img
-                src="./assets/images/del/QRcode-kakaotalk.jpg"
-                alt="Kakaotalk"
-              />
-            </a>
-            <a
-              class="contact-qr__link"
-              href="./assets/images/del/QRcode-line.jpg"
-              data-title="Line"
-              aria-label="Open contact QR code 3"
-            >
-              <img src="./assets/images/del/QRcode-line.jpg" alt="Line" />
-            </a>
-            <a
-              class="contact-qr__link"
-              href="./assets/images/del/QRcode-insta.jpg"
-              data-title="Instagram"
-              aria-label="Open contact QR code 4"
-            >
-              <img src="./assets/images/del/QRcode-insta.jpg" alt="Instagram" />
-            </a>
-            <a
-              class="contact-qr__link"
-              href="./assets/images/del/QRcode-wechat.jpg"
-              data-title="Wechat"
-              aria-label="Open contact QR code 5"
-            >
-              <img src="./assets/images/del/QRcode-wechat.jpg" alt="Wechat" />
-            </a>
-          </div>
-        </aside>
       </section>
     </main>
+
+    <div id="contact-qr-root"></div>
+    <script>
+      fetch("./components/contact-qr.html", { cache: "no-store" })
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("contact-qr-root").innerHTML = data;
+          window.dispatchEvent(new CustomEvent("contact-qr:ready"));
+        });
+    </script>
 
     <footer id="footer"></footer>
     <script>
@@ -522,6 +479,6 @@
     <script src="./assets/libs/moment.min.js"></script>
     <script src="./assets/libs/lightpick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
-    <script type="module" src="./assets/main/js/script.min.js?v=3"></script>
+    <script type="module" src="./assets/main/js/script.min.js?v=4"></script>
   </body>
 </html>

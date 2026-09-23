@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Service | Sakura Massage</title>
-    <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./assets/images/favicon.png" type="image/x-icon" />
     <meta
       name="description"
       content="Book your Sakura Massage experience in Da Nang."
@@ -177,6 +177,16 @@
       </section>
     </main>
 
+    <div id="contact-qr-root"></div>
+    <script>
+      fetch("./components/contact-qr.html", { cache: "no-store" })
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("contact-qr-root").innerHTML = data;
+          window.dispatchEvent(new CustomEvent("contact-qr:ready"));
+        });
+    </script>
+
     <footer id="footer"></footer>
     <script>
       fetch("./components/footer.html", { cache: "no-store" })
@@ -196,6 +206,6 @@
     <script src="./assets/libs/moment.min.js"></script>
     <script src="./assets/libs/lightpick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
-    <script type="module" src="./assets/main/js/script.min.js?v=3"></script>
+    <script type="module" src="./assets/main/js/script.min.js?v=4"></script>
   </body>
 </html>

@@ -909,6 +909,16 @@ body {
   will-change: clip-path;
 }
 
+::selection {
+  background-color: transparent;
+  color: var(--color-gold);
+}
+
+::-moz-selection {
+  background-color: transparent;
+  color: var(--color-gold);
+}
+
 .button-global {
   display: flex;
   justify-content: center;
@@ -2079,13 +2089,15 @@ body {
   }
 }
 .contact-qr {
-  position: absolute;
+  position: fixed;
+  z-index: 50;
   top: 50%;
-  right: clamp(20px, 4vw, 72px);
+  right: clamp(8px, 2vw, 32px);
   display: flex;
   align-items: center;
   gap: 12px;
   transform: translateY(-50%);
+  will-change: transform, opacity;
 }
 
 .contact-qr__label {
@@ -2099,18 +2111,23 @@ body {
 
 .contact-qr__list {
   display: grid;
-  gap: 24px;
+  gap: 16px;
 }
 
 .contact-qr a,
 .contact-qr img {
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 64px;
+  height: 64px;
 }
 
 .contact-qr__link {
   cursor: zoom-in;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+.contact-qr__link:hover, .contact-qr__link:focus-visible, .contact-qr__link:active {
+  opacity: 0.65;
 }
 
 .glightbox-container .gslide-image img {
@@ -2152,25 +2169,6 @@ body {
     padding-top: var(--space-64);
     padding-bottom: calc(var(--space-64) + 10vh);
   }
-  .contact-qr {
-    position: relative;
-    top: auto;
-    right: auto;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    margin-top: var(--space-32);
-    transform: none;
-  }
-  .contact-qr__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .contact-qr__label {
-    writing-mode: initial;
-    transform: none;
-  }
 }
 @media (max-width: 767px) {
   .section-contact {
@@ -2187,13 +2185,8 @@ body {
   .form-contact__row {
     grid-template-columns: 1fr;
   }
-  .contact-qr a,
-  .contact-qr img {
-    width: 48px;
-    height: 48px;
-  }
-  .contact-qr__list {
-    gap: 16px;
+  .contact-qr {
+    right: 8px;
   }
 }
 .explore {
@@ -2594,10 +2587,29 @@ body {
   text-align: center;
 }
 .section-branch__content h3 {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
   color: var(--color-gold);
   font-size: 64px;
   font-weight: 400;
   line-height: 80px;
+}
+.section-branch__content h3::before {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: min(100% + clamp(120px, 18vw, 280px), 1040px);
+  aspect-ratio: 1668/316;
+  background: url("../../images/icons/bg-title-gradient.png") center/100% 100% no-repeat;
+  content: "";
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.section-branch__content .button-global {
+  position: relative;
+  z-index: 2;
 }
 
 @media (scripting: enabled) {

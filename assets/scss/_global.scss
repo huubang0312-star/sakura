@@ -2,6 +2,17 @@
   transition: clip-path 0.3s ease;
   will-change: clip-path;
 }
+
+::selection {
+  background-color: transparent;
+  color: var(--color-gold);
+}
+
+::-moz-selection {
+  background-color: transparent;
+  color: var(--color-gold);
+}
+
 .button-global {
   display: flex;
   justify-content: center;

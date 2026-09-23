@@ -88,12 +88,14 @@ export function customDropdown() {
 }
 
 export function contact() {
-  const form = document.querySelector(".form-contact");
-  if (!form) return;
-  if (form.dataset.contactInitialized === "true") return;
-  form.dataset.contactInitialized = "true";
+  const qrWidget = document.querySelector(".contact-qr");
 
-  if (typeof window.GLightbox === "function") {
+  if (
+    qrWidget &&
+    qrWidget.dataset.lightboxInitialized !== "true" &&
+    typeof window.GLightbox === "function"
+  ) {
+    qrWidget.dataset.lightboxInitialized = "true";
     window.GLightbox({
       selector: ".contact-qr__link",
       openEffect: "zoom",
@@ -105,6 +107,11 @@ export function contact() {
       zoomable: false,
     });
   }
+
+  const form = document.querySelector(".form-contact");
+  if (!form) return;
+  if (form.dataset.contactInitialized === "true") return;
+  form.dataset.contactInitialized = "true";
 
   const countryList = form.querySelector("#contact-country-list");
   const countryCodes = [
