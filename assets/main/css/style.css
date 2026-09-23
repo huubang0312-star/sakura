@@ -1632,7 +1632,11 @@ body {
 
 .contact-page {
   min-height: 100vh;
-  background: radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.045), transparent 28%), radial-gradient(circle at 75% 80%, rgba(255, 255, 255, 0.035), transparent 30%), linear-gradient(135deg, var(--color-black), #020202 52%, #0b0b0b);
+  background-color: var(--color-black);
+  background-image: url("../../images/icons/bg-black.webp");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--color-white);
 }
 
@@ -2169,6 +2173,9 @@ body {
     padding-top: var(--space-64);
     padding-bottom: calc(var(--space-64) + 10vh);
   }
+  .contact-page .section-contact {
+    padding-top: calc(var(--space-64) + 76px);
+  }
 }
 @media (max-width: 767px) {
   .section-contact {
@@ -2483,7 +2490,11 @@ body {
   position: relative;
   overflow: hidden;
   padding: calc(var(--space-64) + 72px) var(--space-40) var(--space-80);
-  background: radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.045), transparent 34%), var(--color-black);
+  background-color: var(--color-black);
+  background-image: url("../../images/icons/bg-black.webp");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--color-white);
 }
 
