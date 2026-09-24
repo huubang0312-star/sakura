@@ -14,6 +14,15 @@ export function customDropdown() {
       : null;
 
     const isSelectType = dropdown.classList.contains("dropdown-custom-select");
+    const isLanguageDropdown = Boolean(dropdown.closest(".header-lang"));
+
+    if (!btnDropdown || !dropdownMenu) return;
+
+    if (isLanguageDropdown && !dropdownItems.length) {
+      btnDropdown.setAttribute("aria-disabled", "true");
+      btnDropdown.setAttribute("aria-expanded", "false");
+      return;
+    }
 
     btnDropdown.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -66,9 +75,10 @@ export function customDropdown() {
     });
 
     window.addEventListener("scroll", function () {
-      if (dropdownMenu.closest(".header-lang")) {
+      if (dropdownMenu?.closest(".header-lang")) {
         dropdownMenu.classList.remove("dropdown--active");
         btnDropdown.classList.remove("--active");
+        btnDropdown.setAttribute("aria-expanded", "false");
       }
     });
   });
@@ -77,6 +87,8 @@ export function customDropdown() {
     dropdowns.forEach((dropdown) => {
       const menu = dropdown.querySelector(".dropdown-custom-menu");
       const btn = dropdown.querySelector(".dropdown-custom-btn");
+
+      if (!menu || !btn) return;
 
       if (!exception || dropdown !== exception) {
         menu.classList.remove("dropdown--active");
@@ -485,7 +497,37 @@ export function contact() {
     return isValid;
   };
 
-  form.addEventListener("submit", (event) => {
+  const getMessageBox = () => {
+    let messageBox = form.querySelector(".form-contact__message");
+
+    if (!messageBox) {
+      messageBox = document.createElement("div");
+      messageBox.className = "form-contact__message";
+      messageBox.setAttribute("role", "status");
+      messageBox.setAttribute("aria-live", "polite");
+      form.appendChild(messageBox);
+    }
+
+    return messageBox;
+  };
+
+  const resetContactForm = () => {
+    form.reset();
+    form.querySelectorAll(".form-contact__field").forEach((field) => {
+      field.classList.remove("has-value", "error");
+    });
+    form.querySelectorAll(".dropdown-custom-select").forEach((dropdown) => {
+      const displayText = dropdown.querySelector(".dropdown-custom-text");
+      dropdown.classList.remove("selected");
+
+      if (displayText) {
+        displayText.textContent = dropdown.dataset.placeholder || "";
+      }
+    });
+  };
+  let messageTimeoutId;
+
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!validateForm()) return;
 
@@ -494,22 +536,64 @@ export function contact() {
     const emailRecipient =
       submitButton?.getAttribute("email-recepient")?.trim() || "";
     const formData = new FormData(form);
-
-    formData.set("email-recepient", emailRecipient);
-
-    form.dispatchEvent(
-      new CustomEvent("contact-form:ajax-submit", {
-        bubbles: true,
-        detail: {
-          action: form.action,
-          method: form.method.toUpperCase(),
-          emailRecipient,
-          formData,
-          data: Object.fromEntries(formData.entries()),
-          submitButton,
-        },
-      }),
+    const countryLabel = form.querySelector(
+      ".form-contact__field--nation .dropdown-custom-text",
     );
+    const messageBox = getMessageBox();
+    const ajaxConfig = window.sakuraReservation || {};
+
+    if (countryLabel?.textContent.trim()) {
+      formData.set("nation", countryLabel.textContent.trim());
+    }
+    formData.set("email-recepient", emailRecipient);
+    formData.set("action", "sakura_reservation");
+    formData.set("nonce", ajaxConfig.nonce || "");
+    window.clearTimeout(messageTimeoutId);
+    messageBox.textContent = "";
+    messageBox.className = "form-contact__message";
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.classList.add("loading");
+    }
+
+    try {
+      const response = await fetch(ajaxConfig.ajaxUrl || form.action, {
+        method: form.method.toUpperCase() || "POST",
+        credentials: "same-origin",
+        body: formData,
+      });
+      const result = await response.json();
+      const message =
+        result?.data?.message ||
+        ajaxConfig.genericError ||
+        "Something went wrong. Please try again.";
+
+      if (result.success) {
+        messageBox.innerHTML = message;
+      } else {
+        messageBox.textContent = message;
+      }
+      messageBox.classList.add(result.success ? "is-success" : "is-error");
+
+      if (result.success) {
+        resetContactForm();
+
+        messageTimeoutId = window.setTimeout(() => {
+          messageBox.textContent = "";
+          messageBox.className = "form-contact__message";
+        }, 7000);
+      }
+    } catch (error) {
+      messageBox.textContent =
+        ajaxConfig.genericError || "Something went wrong. Please try again.";
+      messageBox.classList.add("is-error");
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.classList.remove("loading");
+      }
+    }
   });
 }
 export function headerScroll() {

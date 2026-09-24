@@ -3,7 +3,7 @@ import {
   customDropdown,
   createFilterTab,
   getDateLightPick,
-  contact,
+  contact
 } from "../../main/js/global.min.js";
 
 const $ = jQuery;
@@ -51,8 +51,8 @@ function initParallaxSwiper(swiperEl, options = {}) {
           if (image) image.style.transition = `${speed}ms ${easing}`;
         });
       },
-      ...(options.on || {}),
-    },
+      ...(options.on || {})
+    }
   });
 }
 
@@ -66,8 +66,8 @@ function initSwiper() {
   const swiperParallax = initParallaxSwiper(swiperEl, {
     navigation: {
       nextEl: containerSwiperEl.querySelector(".swiper-button-next"),
-      prevEl: containerSwiperEl.querySelector(".swiper-button-prev"),
-    },
+      prevEl: containerSwiperEl.querySelector(".swiper-button-prev")
+    }
   });
 }
 function heroCover() {
@@ -114,8 +114,8 @@ function heroCover() {
         trigger: hero,
         start: "top+=10% top",
         end: "+=60%",
-        scrub: true,
-      },
+        scrub: true
+      }
     });
 
     tl.to(
@@ -124,18 +124,18 @@ function heroCover() {
         backgroundColor: "#000",
         stagger: 0.005,
         ease: "power3.out",
-        duration: 0.4, // đen nhanh hơn, kết thúc sớm hơn khi timeline chạy tới 40%
+        duration: 0.4 // đen nhanh hơn, kết thúc sớm hơn khi timeline chạy tới 40%
       },
-      0,
+      0
     ).to(
       ".blind-strip-v",
       {
         rotationY: 0,
         stagger: 0.005,
         ease: "power3.out",
-        duration: 1,
+        duration: 1
       },
-      0,
+      0
     );
 
     return () => tl.kill();
@@ -147,8 +147,8 @@ function heroCover() {
         trigger: hero,
         start: "top top",
         end: "+=50%", // rút ngắn từ 100% xuống 60%
-        scrub: true,
-      },
+        scrub: true
+      }
     });
 
     tl.to(
@@ -157,18 +157,18 @@ function heroCover() {
         backgroundColor: "#000",
         stagger: 0.005,
         ease: "power3.out",
-        duration: 0.4,
+        duration: 0.4
       },
-      0,
+      0
     ).to(
       ".blind-strip-v",
       {
         rotationY: 0,
         stagger: 0.005,
         ease: "power3.out",
-        duration: 1,
+        duration: 1
       },
-      0,
+      0
     );
 
     return () => tl.kill();
@@ -226,15 +226,13 @@ function initSmoothAnchorScroll() {
 
     const customOffset = Number.parseFloat(link.dataset.scrollOffset);
     const headerHeight = document.getElementById("header")?.offsetHeight || 0;
-    const offset = Number.isFinite(customOffset)
-      ? customOffset
-      : -headerHeight;
+    const offset = Number.isFinite(customOffset) ? customOffset : -headerHeight;
 
     lenis.scrollTo(target, {
       duration: 3,
       offset,
       immediate: false,
-      force: true,
+      force: true
     });
 
     if (window.location.hash !== url.hash) {
@@ -265,9 +263,9 @@ function initContactQrScroll() {
         autoAlpha: shouldHide ? 0 : 1,
         duration: 0.4,
         ease: "power2.out",
-        overwrite: "auto",
+        overwrite: "auto"
       });
-    },
+    }
   });
 }
 
@@ -328,7 +326,7 @@ function headerMobile() {
 
       const subMenu = this.parentElement.querySelector(".sub-menu");
       const allSubMenus = Array.from(
-        document.querySelectorAll("#header .sub-menu"),
+        document.querySelectorAll("#header .sub-menu")
       ).filter((el) => el !== subMenu);
 
       allSubMenus.forEach((el) => {
@@ -355,7 +353,7 @@ function headerMobile() {
             }
             subMenu.removeEventListener("transitionend", handler);
           },
-          { once: true },
+          { once: true }
         );
       }
     });
@@ -374,8 +372,8 @@ function intro() {
         start: "top 95%",
         end: "+=600",
         scrub: true,
-        markers: false,
-      },
+        markers: false
+      }
     });
   }
 }
@@ -390,9 +388,9 @@ function footer() {
       trigger: radiusSection,
       start: "top 90%",
       end: "top 75%",
-      scrub: true,
+      scrub: true
       // markers: true,
-    },
+    }
   });
 }
 // function animationImage() {
@@ -435,16 +433,16 @@ function animationBox() {
       ? box.closest(".section-branch__card")
       : null;
     const branchTitle = branchCard?.querySelector(
-      ".section-branch__content h3",
+      ".section-branch__content h3"
     );
     const branchButton = branchCard?.querySelector(
-      ".section-branch__content .button-global",
+      ".section-branch__content .button-global"
     );
     const splitBranchTitle = branchTitle
       ? new SplitText(branchTitle, {
           type: "words, chars",
           wordsClass: "el-word",
-          charsClass: "el-char",
+          charsClass: "el-char"
         })
       : null;
 
@@ -463,18 +461,19 @@ function animationBox() {
         start: "top 65%",
         toggleActions: "play none none none",
         once: true,
-        invalidateOnRefresh: true,
-      },
+        invalidateOnRefresh: true
+      }
     });
 
     timeline.fromTo(
       box,
-      { clipPath: "polygon(0 0, 0 0, 0 0, 0 0)" },
+      { autoAlpha: 0, y: 20 },
       {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+        autoAlpha: 1,
         duration: 1,
-        ease: "power1.out",
-      },
+        y: 0,
+        ease: "power1.out"
+      }
     );
 
     if (splitBranchTitle) {
@@ -483,7 +482,7 @@ function animationBox() {
         y: 0,
         duration: 0.3,
         stagger: 0.05,
-        ease: "power2.out",
+        ease: "power2.out"
       });
     }
 
@@ -492,7 +491,7 @@ function animationBox() {
         autoAlpha: 1,
         y: 0,
         duration: 0.75,
-        ease: "power2.out",
+        ease: "power2.out"
       });
     }
   });
@@ -516,15 +515,15 @@ function animationText() {
       const splitHeading = new SplitText(headingElement, {
         type: "words, chars",
         wordsClass: "el-word",
-        charsClass: "el-char",
+        charsClass: "el-char"
       });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: headingElement,
-          start: "top 80%",
+          start: "top 80%"
           // markers: true,
-        },
+        }
       });
 
       // Logo chạy đầu tiên
@@ -533,7 +532,7 @@ function animationText() {
           y: 20,
           opacity: 0,
           duration: 0.4,
-          ease: "power2.out",
+          ease: "power2.out"
         });
       }
 
@@ -544,9 +543,9 @@ function animationText() {
           opacity: 0,
           duration: 0.3,
           stagger: 0.05,
-          ease: "power2.out",
+          ease: "power2.out"
         },
-        logo ? "-=0.15" : 0,
+        logo ? "-=0.15" : 0
       );
 
       if (descElement) {
@@ -554,7 +553,7 @@ function animationText() {
 
         const splitDescription = new SplitText(descElement, {
           type: "lines",
-          linesClass: "el-line",
+          linesClass: "el-line"
         });
 
         tl.from(
@@ -564,9 +563,9 @@ function animationText() {
             opacity: 0,
             duration: 0.35,
             stagger: 0.1,
-            ease: "power2.out",
+            ease: "power2.out"
           },
-          "-=0.15",
+          "-=0.15"
         );
       }
 
@@ -579,9 +578,9 @@ function animationText() {
             y: 20,
             opacity: 0,
             duration: 0.4,
-            ease: "power2.out",
+            ease: "power2.out"
           },
-          "-=0.15",
+          "-=0.15"
         );
       }
 
@@ -589,7 +588,7 @@ function animationText() {
         tl.from(
           button,
           { y: 20, opacity: 0, duration: 0.4, ease: "power2.out" },
-          "-=0.15",
+          "-=0.15"
         );
       }
 
@@ -605,9 +604,9 @@ function animationText() {
               autoAlpha: 1,
               duration: 0.75,
               stagger: 0.18,
-              ease: "power2.out",
+              ease: "power2.out"
             },
-            "+=0.12",
+            "+=0.12"
           );
         }
       }
@@ -626,8 +625,8 @@ function animationText() {
         scrollTrigger: {
           trigger: btn,
           start: "top 90%",
-          once: true,
-        },
+          once: true
+        }
       });
     });
 
@@ -643,8 +642,8 @@ function animationText() {
         scrollTrigger: {
           trigger: form,
           start: "top 85%",
-          once: true,
-        },
+          once: true
+        }
       });
     });
 
@@ -664,8 +663,8 @@ function animationText() {
         scrollTrigger: {
           trigger: group,
           start: "top 90%",
-          once: true,
-        },
+          once: true
+        }
       });
     });
   });
@@ -680,14 +679,14 @@ function slider() {
       spaceBetween: 20,
       navigation: {
         nextEl: parent.querySelector(".swiper-button-next"),
-        prevEl: parent.querySelector(".swiper-button-prev"),
+        prevEl: parent.querySelector(".swiper-button-prev")
       },
       breakpoints: {
         768: {
           slidesPerView: 3.4,
-          spaceBetween: 24,
-        },
-      },
+          spaceBetween: 24
+        }
+      }
     });
   });
 }
@@ -821,7 +820,7 @@ function animationMake() {
         for (let c = 0; c < cols; c++) {
           cells.push({
             x: AREA.xMin + cellW * (c + 0.5),
-            y: AREA.yMin + cellH * (r + 0.5),
+            y: AREA.yMin + cellH * (r + 0.5)
           });
         }
       }
@@ -835,7 +834,7 @@ function animationMake() {
 
       const getSpot = (cell) => ({
         x: cell.x + randBetween(-jitterX, jitterX),
-        y: cell.y + randBetween(-jitterY, jitterY),
+        y: cell.y + randBetween(-jitterY, jitterY)
       });
 
       // Gán vị trí + kích thước ngẫu nhiên cho flower gốc trước (mỗi bông 1 ô riêng)
@@ -857,7 +856,7 @@ function animationMake() {
         clone.style.setProperty("--fy", spot.y + "%");
         clone.style.setProperty(
           "--fscale",
-          gsap.utils.random(0.7, 1.3).toFixed(2),
+          gsap.utils.random(0.7, 1.3).toFixed(2)
         );
 
         flowerGroup.appendChild(clone);
@@ -877,9 +876,9 @@ function animationMake() {
         end: () => "+=" + getMaxTravel(),
         pin: true,
         scrub: 1,
-        invalidateOnRefresh: true,
+        invalidateOnRefresh: true
         // markers: true,
-      },
+      }
     });
 
     // Các item chạy lên
@@ -887,9 +886,9 @@ function animationMake() {
       items,
       {
         y: () => -getMaxTravel(),
-        duration: 1,
+        duration: 1
       },
-      0,
+      0
     );
 
     // Flower lần lượt hiện, xen kẽ ngẫu nhiên kiểu blur / zoom
@@ -918,7 +917,7 @@ function animationMake() {
           flower,
           { autoAlpha: 0, scale: 1, filter: `blur(${blurFrom}px)` },
           { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration },
-          startAt,
+          startAt
         );
       } else {
         // Nhóm zoom: từ ẩn + to → hiện + về đúng size, không blur
@@ -932,9 +931,9 @@ function animationMake() {
             scale: 1,
             filter: "blur(0px)",
             duration,
-            transformOrigin: "50% 50%",
+            transformOrigin: "50% 50%"
           },
-          startAt,
+          startAt
         );
       }
     });
@@ -954,12 +953,12 @@ function makeMouseParallax(section, items) {
       const setters = [...items].map((item) => ({
         x: gsap.quickTo(item, "xPercent", {
           duration: 0.8,
-          ease: "power3.out",
+          ease: "power3.out"
         }),
         y: gsap.quickTo(item, "yPercent", {
           duration: 0.8,
-          ease: "power3.out",
-        }),
+          ease: "power3.out"
+        })
       }));
 
       const onMove = (e) => {
@@ -987,6 +986,6 @@ function makeMouseParallax(section, items) {
         section.removeEventListener("mouseleave", onLeave);
         gsap.set(items, { xPercent: 0, yPercent: 0 });
       };
-    },
+    }
   );
 }

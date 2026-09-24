@@ -911,12 +911,12 @@ body {
 
 ::selection {
   background-color: transparent;
-  color: var(--color-gold);
+  color: var(--color-bg);
 }
 
 ::-moz-selection {
   background-color: transparent;
-  color: var(--color-gold);
+  color: var(--color-bg);
 }
 
 .button-global {
@@ -1005,7 +1005,7 @@ body {
 
 @media (scripting: enabled) {
   .polygon-box {
-    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    opacity: 0;
   }
 }
 .slider-btn {
@@ -1718,7 +1718,7 @@ body {
   height: 100%;
   margin: 0 auto;
   position: relative;
-  z-index: 2;
+  z-index: 4;
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 0 118px;
@@ -1727,7 +1727,7 @@ body {
 @media (max-width: 767px) {
   .section-contact.layout-contact .contact-inner {
     grid-template-columns: 1fr;
-    padding: 64px 20px;
+    padding: 64px 20px 112px;
     gap: 40px;
   }
 }
@@ -2053,12 +2053,12 @@ body {
 .form-contact__submit:hover, .form-contact__submit:focus-visible {
   filter: brightness(1.08);
 }
-.form-contact__submit.aloading {
+.form-contact__submit.loading {
   position: relative;
   color: transparent;
   pointer-events: none;
 }
-.form-contact__submit.aloading::after {
+.form-contact__submit.loading::after {
   position: absolute;
   z-index: 2;
   top: 50%;
@@ -2235,6 +2235,18 @@ body {
   .section-contact {
     padding-right: var(--space-16);
     padding-left: var(--space-16);
+  }
+  .form-contact input,
+  .form-contact select,
+  .form-contact textarea,
+  .form-contact .dropdown-custom-btn,
+  .form-contact .dropdown-custom-item {
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .form-contact__label {
+    font-size: 15px;
+    line-height: 22px;
   }
   .contact-page .section-contact {
     padding-right: 20px;
@@ -2760,10 +2772,10 @@ body {
     right: 5%;
     bottom: 16px;
     left: 5%;
-    gap: 8px;
+    gap: 10px;
   }
   .section-branch__content h3 {
-    font-size: clamp(20px, 6.5vw, 30px);
+    font-size: 20px;
     line-height: 1.2;
   }
   .section-branch__content .button-global {
@@ -2781,11 +2793,6 @@ body {
   }
   .section-branch__content {
     bottom: 10px;
-    gap: 6px;
-  }
-  .section-branch__content h3 {
-    font-size: clamp(18px, 6vw, 24px);
-    line-height: 1.15;
   }
   .section-branch__content .button-global {
     height: 32px;
