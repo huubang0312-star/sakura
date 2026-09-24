@@ -197,6 +197,8 @@
 }
 
 @media (scripting: enabled) {
+  .section-branch__heading .el-title,
+  .section-branch__heading .el-desc,
   .section-branch__content h3,
   .section-branch__content .button-global {
     opacity: 0;
@@ -246,8 +248,9 @@
 
 @media (max-width: 767px) {
   .section-branch {
-    padding-right: var(--space-16);
-    padding-left: var(--space-16);
+    padding-right: 20px;
+    padding-bottom: calc(var(--space-80) + 48px);
+    padding-left: 20px;
   }
 
   .section-branch__heading {

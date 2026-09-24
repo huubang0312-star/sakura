@@ -110,6 +110,44 @@ export function contact() {
 
   const form = document.querySelector(".form-contact");
   if (!form) return;
+
+  const contactSection = form.closest(".section-contact") || document;
+  const menuTriggers = contactSection.querySelectorAll(
+    ".contact-menu-lightbox",
+  );
+
+  if (typeof window.GLightbox === "function") {
+    menuTriggers.forEach((trigger) => {
+      if (trigger.dataset.lightboxInitialized === "true") return;
+
+      const imageUrl = trigger.getAttribute("href");
+      if (!imageUrl) return;
+
+      const menuLightbox = window.GLightbox({
+        elements: [
+          {
+            href: imageUrl,
+            type: "image",
+          },
+        ],
+        skin: "contact-menu",
+        openEffect: "zoom",
+        closeEffect: "zoom",
+        slideEffect: "fade",
+        touchNavigation: false,
+        keyboardNavigation: true,
+        closeOnOutsideClick: true,
+        zoomable: false,
+      });
+
+      trigger.dataset.lightboxInitialized = "true";
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        menuLightbox.open();
+      });
+    });
+  }
+
   if (form.dataset.contactInitialized === "true") return;
   form.dataset.contactInitialized = "true";
 

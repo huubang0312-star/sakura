@@ -1044,49 +1044,6 @@ body {
   font-size: 0;
 }
 
-#modalMenu .modal-content {
-  background-color: transparent;
-  border: none;
-}
-#modalMenu .modal-header {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-#modalMenu .btn-close {
-  background: none;
-  opacity: 1;
-  padding: 0;
-  margin: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  background: linear-gradient(270deg, #d9af6c 0%, #ff8d28 47.6%, #735d39 100%);
-  border-radius: 50%;
-  position: relative;
-}
-#modalMenu .btn-close::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  background-color: rgb(33, 28, 25);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-#modalMenu .btn-close svg {
-  width: 24px;
-  height: 24px;
-  position: relative;
-  z-index: 3;
-}
-#modalMenu .btn-close svg path {
-  color: var(--color-gold);
-  stroke-width: 1px;
-}
-
 .lightpick {
   --color-stroke: #ccc;
   --color-bg: #fff;
@@ -1799,6 +1756,10 @@ body {
   margin-bottom: 40px;
 }
 
+.contact-page .section-contact {
+  padding-bottom: calc(var(--space-80) + 13vh);
+}
+
 .contact-wrapper {
   position: relative;
   z-index: 1;
@@ -2159,24 +2120,90 @@ body {
   opacity: 0.65;
 }
 
-.glightbox-container .gslide-image img {
+.glightbox-clean .gslide-image img {
   width: min(70vw, 420px);
   height: auto;
   image-rendering: auto;
 }
 
-.glightbox-container .gslide-description {
+.glightbox-clean .gslide-description {
   background-color: transparent;
   text-align: center;
 }
 
-.glightbox-container .gslide-title {
+.glightbox-clean .gslide-title {
   margin: 12px 0 0;
   color: var(--color-gold);
   font-family: var(--font-heading);
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
+}
+
+.glightbox-contact-menu .gslide-inner-content,
+.glightbox-contact-menu .ginner-container,
+.glightbox-contact-menu .gslide-media,
+.glightbox-contact-menu .gslide-image {
+  max-height: 100vh;
+  max-height: 100dvh;
+}
+
+.glightbox-contact-menu .gslide-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glightbox-contact-menu .gslide-image img {
+  width: auto;
+  height: auto !important;
+  max-width: min(86vw, 960px);
+  max-height: 80vh;
+  max-height: 80dvh;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
+.glightbox-contact-menu .gslide-description {
+  display: none;
+}
+
+.glightbox-contact-menu .gprev,
+.glightbox-contact-menu .gnext {
+  display: none !important;
+}
+
+.glightbox-contact-menu .gclose {
+  position: fixed;
+  z-index: 3;
+  top: 15px;
+  right: 15px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  padding: 10px;
+  border: 0;
+  border-radius: 4px;
+  color: var(--color-white);
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.glightbox-contact-menu .gclose:hover, .glightbox-contact-menu .gclose:focus-visible {
+  color: var(--color-white);
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+.glightbox-contact-menu .gclose svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.glightbox-contact-menu .gclose path {
+  fill: var(--color-white) !important;
 }
 
 .visually-hidden {
@@ -2206,6 +2233,10 @@ body {
   .section-contact {
     padding-right: var(--space-16);
     padding-left: var(--space-16);
+  }
+  .contact-page .section-contact {
+    padding-right: 20px;
+    padding-left: 20px;
   }
   .contact-heading p br {
     display: none;
@@ -2649,6 +2680,8 @@ body {
 }
 
 @media (scripting: enabled) {
+  .section-branch__heading .el-title,
+  .section-branch__heading .el-desc,
   .section-branch__content h3,
   .section-branch__content .button-global {
     opacity: 0;
@@ -2688,8 +2721,9 @@ body {
 }
 @media (max-width: 767px) {
   .section-branch {
-    padding-right: var(--space-16);
-    padding-left: var(--space-16);
+    padding-right: 20px;
+    padding-bottom: calc(var(--space-80) + 48px);
+    padding-left: 20px;
   }
   .section-branch__heading {
     margin-bottom: var(--space-32);

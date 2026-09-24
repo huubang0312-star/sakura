@@ -146,6 +146,10 @@
   }
 }
 
+.contact-page .section-contact {
+  padding-bottom: calc(var(--space-80) + 13vh);
+}
+
 .contact-wrapper {
   position: relative;
   z-index: 1;
@@ -558,24 +562,94 @@
   }
 }
 
-.glightbox-container .gslide-image img {
+.glightbox-clean .gslide-image img {
   width: min(70vw, 420px);
   height: auto;
   image-rendering: auto;
 }
 
-.glightbox-container .gslide-description {
+.glightbox-clean .gslide-description {
   background-color: transparent;
   text-align: center;
 }
 
-.glightbox-container .gslide-title {
+.glightbox-clean .gslide-title {
   margin: 12px 0 0;
   color: var(--color-gold);
   font-family: var(--font-heading);
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
+}
+
+.glightbox-contact-menu .gslide-inner-content,
+.glightbox-contact-menu .ginner-container,
+.glightbox-contact-menu .gslide-media,
+.glightbox-contact-menu .gslide-image {
+  max-height: 100vh;
+  max-height: 100dvh;
+}
+
+.glightbox-contact-menu .gslide-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glightbox-contact-menu .gslide-image img {
+  width: auto;
+  height: auto !important;
+  max-width: min(86vw, 960px);
+  max-height: 80vh;
+  max-height: 80dvh;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
+.glightbox-contact-menu .gslide-description {
+  display: none;
+}
+
+.glightbox-contact-menu .gprev,
+.glightbox-contact-menu .gnext {
+  display: none !important;
+}
+
+.glightbox-contact-menu .gclose {
+  position: fixed;
+  z-index: 3;
+  top: 15px;
+  right: 15px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  padding: 10px;
+  border: 0;
+  border-radius: 4px;
+  color: var(--color-white);
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-white);
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  path {
+    fill: var(--color-white) !important;
+  }
 }
 
 .visually-hidden {
@@ -607,6 +681,11 @@
   .section-contact {
     padding-right: var(--space-16);
     padding-left: var(--space-16);
+  }
+
+  .contact-page .section-contact {
+    padding-right: 20px;
+    padding-left: 20px;
   }
 
   .contact-heading p br {
