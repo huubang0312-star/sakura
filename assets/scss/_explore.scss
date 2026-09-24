@@ -15,6 +15,9 @@
   &-bg {
     right: 0;
     top: 0;
+    &.hidden-flower {
+      display: none;
+    }
     @media (max-width: 767px) {
       width: 150px;
       height: 100px;

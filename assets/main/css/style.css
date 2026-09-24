@@ -1193,7 +1193,6 @@ body {
   min-height: 100vh;
   border-radius: 1200px 1200px 0 0;
   margin-top: -60vh;
-  background-image: url("../../images/del/intro-cover.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -1214,13 +1213,16 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(33, 28, 25, 0) 0%, #211c19 100%);
+  background: var(--bg-radial);
   z-index: -1;
 }
 .intro-hoa {
   position: absolute;
   left: 0;
   bottom: 0;
+}
+.intro-hoa.hidden-flower {
+  display: none;
 }
 @media (max-width: 767px) {
   .intro-hoa {
@@ -2273,6 +2275,9 @@ body {
   right: 0;
   top: 0;
 }
+.explore-bg.hidden-flower {
+  display: none;
+}
 @media (max-width: 767px) {
   .explore-bg {
     width: 150px;
@@ -2521,6 +2526,9 @@ body {
 .make-flower {
   position: absolute;
   inset: 0;
+}
+.make-flower.hidden-flower {
+  display: none;
 }
 .make-flower .flower-item {
   position: absolute;

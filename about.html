@@ -112,7 +112,17 @@
           <div class="hero-cover"></div>
         </div>
       </section>
-      <section class="intro">
+      <section
+        class="intro"
+        style="
+          --bg-radial: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(33, 28, 25, 0) 0%,
+            #211c19 100%
+          );
+          background-image: url(&quot;./assets/images/del/intro-cover.png&quot;);
+        "
+      >
         <div class="intro-line">
           <img
             src="./assets/images/icons/line-row.svg"
@@ -145,7 +155,7 @@
             </div>
           </div>
         </div>
-        <div class="intro-hoa">
+        <div class="intro-hoa hidden-flower">
           <img src="./assets/images/del/img-1.png" alt="" />
         </div>
       </section>
@@ -315,7 +325,7 @@
               </div>
             </div>
           </div>
-          <div class="make-flower">
+          <div class="make-flower hidden-flower">
             <div class="flower-item">
               <img src="./assets/images/icons/flower-3.png" alt="" />
             </div>
@@ -509,12 +519,7 @@
             </a>
           </div>
           <div class="contact-layout">
-            <form
-              class="form-contact"
-              action="#"
-              method="post"
-              novalidate
-            >
+            <form class="form-contact" action="#" method="post" novalidate>
               <div
                 class="form-contact__field form-contact__field--location required"
               >

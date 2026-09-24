@@ -147,7 +147,9 @@
   &-flower {
     position: absolute;
     inset: 0;
-
+    &.hidden-flower {
+      display: none;
+    }
     .flower-item {
       position: absolute;
       z-index: 1;
