@@ -178,6 +178,21 @@
             </div>
 
             <div class="form-contact__field form-contact__field--text required">
+              <label class="form-contact__label" for="contact-phone"
+                >Phone number</label
+              >
+              <input
+                id="contact-phone"
+                name="phone"
+                type="tel"
+                inputmode="tel"
+                placeholder=" "
+                autocomplete="tel"
+                required
+              />
+            </div>
+
+            <div class="form-contact__field form-contact__field--text required">
               <label class="form-contact__label" for="contact-guests">
                 Number of guest
               </label>
@@ -449,7 +464,11 @@
               ></textarea>
             </div>
 
-            <button class="form-contact__submit" type="submit">
+            <button
+              class="form-contact__submit"
+              type="submit"
+              email-recepient=""
+            >
               Make reservation
             </button>
           </form>
@@ -487,6 +506,6 @@
     <script src="./assets/libs/moment.min.js"></script>
     <script src="./assets/libs/lightpick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
-    <script type="module" src="./assets/main/js/script.min.js?v=9"></script>
+    <script type="module" src="./assets/main/js/script.min.js?v=13"></script>
   </body>
 </html>

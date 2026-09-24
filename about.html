@@ -498,6 +498,7 @@
       <section
         class="section-contact layout-contact"
         aria-label="Booking Center"
+        id="section-contact"
       >
         <div class="contact-inner">
           <div class="contact-box">
@@ -531,14 +532,16 @@
                   class="visually-hidden"
                   name="location"
                   type="text"
+                  value="sakura"
                   tabindex="-1"
                   aria-hidden="true"
                   required
                 />
                 <div
-                  class="dropdown-custom-select"
+                  class="dropdown-custom-select selected"
                   data-input="#contact-location"
                   data-placeholder="Sakura"
+                  data-selected-branch="sakura"
                 >
                   <button
                     class="dropdown-custom-btn"
@@ -564,6 +567,7 @@
                       type="button"
                       role="option"
                       data-value="sakura"
+                      aria-selected="true"
                     >
                       Sakura
                     </button>
@@ -572,6 +576,7 @@
                       type="button"
                       role="option"
                       data-value="new-sakura"
+                      aria-selected="false"
                     >
                       New Sakura
                     </button>
@@ -591,6 +596,23 @@
                   type="text"
                   placeholder=" "
                   autocomplete="name"
+                  required
+                />
+              </div>
+
+              <div
+                class="form-contact__field form-contact__field--text required"
+              >
+                <label class="form-contact__label" for="contact-phone"
+                  >Phone number</label
+                >
+                <input
+                  id="contact-phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  placeholder=" "
+                  autocomplete="tel"
                   required
                 />
               </div>
@@ -871,7 +893,11 @@
                 ></textarea>
               </div>
 
-              <button class="form-contact__submit" type="submit">
+              <button
+                class="form-contact__submit"
+                type="submit"
+                email-recepient=""
+              >
                 Make reservation
               </button>
             </form>
@@ -927,7 +953,7 @@
     <script src="./assets/libs/lightpick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
     <!-- import custom js -->
-    <script type="module" src="./assets/main/js/script.min.js?v=9"></script>
+    <script type="module" src="./assets/main/js/script.min.js?v=13"></script>
     <!-- <script type="module" src="./assets/main/js/home.min.js"></script> -->
 
     <!-- end import custom js -->

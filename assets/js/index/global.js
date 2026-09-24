@@ -449,7 +449,12 @@ export function contact() {
     });
   }
 
-  const requiredItems = form.querySelectorAll(".form-contact__field.required");
+  const requiredItems = Array.from(form.querySelectorAll("[required]"))
+    .map((field) => field.closest(".form-contact__field"))
+    .filter(
+      (formItem, index, items) =>
+        formItem && items.indexOf(formItem) === index,
+    );
 
   const getFieldValue = (formItem) => {
     const field = formItem.querySelector("input, textarea, select");
@@ -481,9 +486,30 @@ export function contact() {
   };
 
   form.addEventListener("submit", (event) => {
-    if (!validateForm()) {
-      event.preventDefault();
-    }
+    event.preventDefault();
+    if (!validateForm()) return;
+
+    const submitButton =
+      event.submitter || form.querySelector('[type="submit"]');
+    const emailRecipient =
+      submitButton?.getAttribute("email-recepient")?.trim() || "";
+    const formData = new FormData(form);
+
+    formData.set("email-recepient", emailRecipient);
+
+    form.dispatchEvent(
+      new CustomEvent("contact-form:ajax-submit", {
+        bubbles: true,
+        detail: {
+          action: form.action,
+          method: form.method.toUpperCase(),
+          emailRecipient,
+          formData,
+          data: Object.fromEntries(formData.entries()),
+          submitButton,
+        },
+      }),
+    );
   });
 }
 export function headerScroll() {

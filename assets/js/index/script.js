@@ -177,12 +177,70 @@ function heroCover() {
 
 function init() {
   gsap.registerPlugin(ScrollTrigger);
+  initSmoothAnchorScroll();
   contact();
   initContactQrScroll();
   customDropdown();
   createFilterTab();
   slider();
   // getDateLightPick();
+}
+
+function initSmoothAnchorScroll() {
+  if (document.documentElement.dataset.anchorScrollInitialized === "true") {
+    return;
+  }
+
+  document.documentElement.dataset.anchorScrollInitialized = "true";
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+    if (!href || !href.includes("#")) return;
+
+    const url = new URL(href, window.location.href);
+    if (
+      url.origin !== window.location.origin ||
+      url.pathname !== window.location.pathname ||
+      url.search !== window.location.search ||
+      !url.hash
+    ) {
+      return;
+    }
+
+    let targetId;
+    try {
+      targetId = decodeURIComponent(url.hash.slice(1));
+    } catch {
+      return;
+    }
+
+    if (!targetId) return;
+
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+
+    const customOffset = Number.parseFloat(link.dataset.scrollOffset);
+    const headerHeight = document.getElementById("header")?.offsetHeight || 0;
+    const offset = Number.isFinite(customOffset)
+      ? customOffset
+      : -headerHeight;
+
+    lenis.scrollTo(target, {
+      duration: 3,
+      offset,
+      immediate: false,
+      force: true,
+    });
+
+    if (window.location.hash !== url.hash) {
+      window.history.pushState(null, "", url.hash);
+    }
+  });
 }
 
 function initContactQrScroll() {
