@@ -1005,7 +1005,7 @@ body {
 
 @media (scripting: enabled) {
   .polygon-box {
-    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    opacity: 0;
   }
 }
 .slider-btn {

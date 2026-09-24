@@ -411,10 +411,11 @@ function animationBox() {
 
     timeline.fromTo(
       box,
-      { clipPath: "polygon(0 0, 0 0, 0 0, 0 0)" },
+      { autoAlpha: 0, y: 20 },
       {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+        autoAlpha: 1,
         duration: 1,
+        y: 0,
         ease: "power1.out",
       },
     );
