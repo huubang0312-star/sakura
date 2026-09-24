@@ -449,7 +449,6 @@ export function contact() {
     });
   }
 
-  const submitButton = form.querySelector('[type="submit"]');
   const requiredItems = form.querySelectorAll(".form-contact__field.required");
 
   const getFieldValue = (formItem) => {
@@ -481,36 +480,10 @@ export function contact() {
     return isValid;
   };
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    if (submitButton?.classList.contains("aloading")) return;
-    if (!validateForm()) return;
-
-    const formData = new FormData(form);
-    const formValues = Object.fromEntries(formData.entries());
-    console.log("Contact form data:", formValues);
-
-    submitButton?.classList.add("aloading");
-    if (submitButton) submitButton.disabled = true;
-
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-
-    submitButton?.classList.remove("aloading");
-    if (submitButton) submitButton.disabled = false;
-
-    alert("submit form thành công");
-
-    form.reset();
-    form.querySelectorAll(".form-contact__field").forEach((formItem) => {
-      formItem.classList.remove("error", "has-value");
-    });
-    form.querySelectorAll(".dropdown-custom-select").forEach((dropdown) => {
-      dropdown.classList.remove("selected");
-      const displayText = dropdown.querySelector(".dropdown-custom-text");
-      if (displayText) {
-        displayText.textContent = dropdown.dataset.placeholder || "";
-      }
-    });
+  form.addEventListener("submit", (event) => {
+    if (!validateForm()) {
+      event.preventDefault();
+    }
   });
 }
 export function headerScroll() {
