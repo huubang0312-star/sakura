@@ -115,6 +115,13 @@
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
+
+.dropdown-custom-item:hover > .underline-hover::before,
+.dropdown-custom-item:focus-visible > .underline-hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
 @media (scripting: enabled) {
   .polygon-box {
     opacity: 0;

@@ -24,6 +24,32 @@ export function customDropdown() {
       return;
     }
 
+    const addItemUnderline = (item) => {
+      const textElement = Array.from(item.children).find(
+        (element) =>
+          element.tagName === "SPAN" &&
+          !element.classList.contains("country-flag") &&
+          element.textContent.trim(),
+      );
+
+      if (textElement) {
+        textElement.classList.add("underline-hover");
+        return;
+      }
+
+      const textNode = Array.from(item.childNodes).find(
+        (node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim(),
+      );
+      if (!textNode) return;
+
+      const underlineText = document.createElement("span");
+      underlineText.className = "underline-hover";
+      underlineText.textContent = textNode.textContent.trim();
+      item.replaceChild(underlineText, textNode);
+    };
+
+    dropdownItems.forEach(addItemUnderline);
+
     btnDropdown.addEventListener("click", function (e) {
       e.stopPropagation();
       closeAllDropdowns(dropdown);
@@ -46,6 +72,9 @@ export function customDropdown() {
         if (isSelectType) {
           const optionText = item.textContent;
           displayText.innerHTML = item.innerHTML;
+          displayText
+            .querySelectorAll(".underline-hover")
+            .forEach((element) => element.classList.remove("underline-hover"));
           dropdown.classList.add("selected");
           if (targetInput) {
             targetInput.value = item.dataset.value || optionText.trim();
@@ -67,6 +96,8 @@ export function customDropdown() {
             } else {
               item.innerHTML = `<span>${currentText}</span>`;
             }
+
+            addItemUnderline(item);
           }
         }
 
