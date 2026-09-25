@@ -35,6 +35,7 @@
       padding: 0 20px;
       min-height: 1300px;
       background-attachment: scroll;
+      background-size: cover;
     }
     &::before {
       content: "";
@@ -271,11 +272,16 @@
     img {
       width: 18px;
       height: 18px;
+      flex: 0 0 18px;
+      margin-left: auto;
+      object-fit: contain;
     }
 
     .dropdown-custom-arrow {
-      width: 12.6px;
-      height: 12.6px;
+      box-sizing: border-box;
+      width: 18px;
+      height: 18px;
+      padding: 2.7px;
     }
   }
 
@@ -684,6 +690,8 @@
   }
 
   .form-contact {
+    --form-field-height: 50px;
+
     input,
     select,
     textarea,
@@ -692,11 +700,29 @@
       font-size: 15px;
       line-height: 22px;
     }
+
+    input,
+    select,
+    .dropdown-custom-btn {
+      padding-right: 24px;
+      padding-left: 24px;
+    }
   }
 
   .form-contact__label {
+    left: 24px;
     font-size: 15px;
     line-height: 22px;
+  }
+
+  .form-contact__field--icon {
+    img {
+      right: 24px;
+    }
+
+    input {
+      padding-right: 48px;
+    }
   }
 
   .contact-page .section-contact {

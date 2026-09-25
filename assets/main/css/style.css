@@ -1226,9 +1226,9 @@ body {
 }
 @media (max-width: 767px) {
   .intro-hoa {
-    width: 200px;
+    width: 130px;
     height: 150px;
-    bottom: 50%;
+    bottom: 45%;
   }
   .intro-hoa img {
     width: 100%;
@@ -1651,6 +1651,7 @@ body {
     padding: 0 20px;
     min-height: 1300px;
     background-attachment: scroll;
+    background-size: cover;
   }
 }
 .section-contact.layout-contact::before {
@@ -1871,10 +1872,15 @@ body {
 .form-contact .dropdown-custom-btn img {
   width: 18px;
   height: 18px;
+  flex: 0 0 18px;
+  margin-left: auto;
+  object-fit: contain;
 }
 .form-contact .dropdown-custom-btn .dropdown-custom-arrow {
-  width: 12.6px;
-  height: 12.6px;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  padding: 2.7px;
 }
 .form-contact .dropdown-custom-text {
   display: inline-flex;
@@ -2236,6 +2242,9 @@ body {
     padding-right: var(--space-16);
     padding-left: var(--space-16);
   }
+  .form-contact {
+    --form-field-height: 50px;
+  }
   .form-contact input,
   .form-contact select,
   .form-contact textarea,
@@ -2244,9 +2253,22 @@ body {
     font-size: 15px;
     line-height: 22px;
   }
+  .form-contact input,
+  .form-contact select,
+  .form-contact .dropdown-custom-btn {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
   .form-contact__label {
+    left: 24px;
     font-size: 15px;
     line-height: 22px;
+  }
+  .form-contact__field--icon img {
+    right: 24px;
+  }
+  .form-contact__field--icon input {
+    padding-right: 48px;
   }
   .contact-page .section-contact {
     padding-right: 20px;
