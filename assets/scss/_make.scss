@@ -159,8 +159,13 @@
   &-flower {
     position: absolute;
     inset: 0;
+    z-index: 1;
+    pointer-events: none;
     &.hidden-flower {
       display: none;
+      @media (max-width: 767px) {
+        display: block;
+      }
     }
     .flower-item {
       position: absolute;
@@ -180,6 +185,40 @@
         width: 100%;
         height: auto;
       }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .make:not(.box-border) {
+    .make-item {
+      left: 30px !important;
+      right: auto !important;
+      max-width: none;
+      width: calc(100% - 60px);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: center;
+      column-gap: 10px;
+
+      &:nth-child(even) {
+        .make-img {
+          order: 2;
+        }
+
+        .make-desc {
+          order: 1;
+        }
+      }
+    }
+
+    .make-img {
+      margin-bottom: 0;
+    }
+
+    .make-desc {
+      min-width: 0;
+      text-align: left !important;
     }
   }
 }

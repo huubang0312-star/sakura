@@ -539,6 +539,7 @@ function animationText() {
         logo ? "-=0.15" : 0
       );
 
+      // Desc: y 20 -> 0 kèm opacity, giống button
       if (descElement) {
         tl.to(
           descElement,
@@ -553,8 +554,6 @@ function animationText() {
       }
 
       if (priceElement) {
-        gsap.set(priceElement, { autoAlpha: 1 }); // phòng trường hợp CSS đang ẩn
-
         tl.from(
           priceElement,
           {
@@ -786,7 +785,7 @@ function animationMake() {
         return;
       }
 
-      const itemGap = 110;
+      const itemGap = 55;
       let nextItemTop = section.clientHeight;
 
       items.forEach((item) => {
@@ -832,11 +831,7 @@ function animationMake() {
       ? [...flowerGroup.querySelectorAll(".flower-item")]
       : [];
 
-    if (
-      flowerGroup &&
-      baseFlowers.length &&
-      !flowerGroup.classList.contains("hidden-flower")
-    ) {
+    if (flowerGroup && baseFlowers.length) {
       const EXTRA_COUNT = 5; // số flower muốn thêm
       const TOTAL = baseFlowers.length + EXTRA_COUNT;
 
@@ -899,9 +894,7 @@ function animationMake() {
       }
     }
 
-    const flowers = flowerGroup?.classList.contains("hidden-flower")
-      ? []
-      : section.querySelectorAll(".flower-item"); // full list, gồm cả clone
+    const flowers = section.querySelectorAll(".flower-item"); // full list, gồm cả clone
 
     const getMaxTravel = () => {
       layoutMakeItems();
