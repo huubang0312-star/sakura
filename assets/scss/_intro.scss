@@ -34,6 +34,7 @@
       width: 130px;
       height: 150px;
       bottom: 45%;
+      display: none;
       img {
         width: 100%;
         height: 100%;
@@ -108,7 +109,7 @@
     overflow: hidden;
     @media (max-width: 767px) {
       max-width: calc(100% - 80px);
-      aspect-ratio: 388 / 300;
+      aspect-ratio: 425/ 562;
     }
     img {
       width: 100%;

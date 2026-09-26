@@ -1,6 +1,6 @@
 .glow {
   position: relative;
-  background-image: url("../../images/del/intro-cover.png");
+  // background-image: url("../../images/del/intro-cover.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -9,11 +9,12 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-      50% 50% at 50% 50%,
-      rgba(33, 28, 25, 0) 0%,
-      #211c19 100%
-    );
+    // background: radial-gradient(
+    //   50% 50% at 50% 50%,
+    //   rgba(33, 28, 25, 0) 0%,
+    //   #211c19 100%
+    // );
+    background: var(--bg-radial);
     z-index: 1;
   }
   &-inner {
