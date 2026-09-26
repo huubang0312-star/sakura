@@ -1,4 +1,6 @@
 .intro {
+  --intro-artwork-height: calc((100vw - 64px) * 34 / 1377);
+  --intro-artwork-join: calc(80px + var(--intro-artwork-height) - 1px);
   min-height: 100vh;
   border-radius: 1200px 1200px 0 0;
   margin-top: -60vh;
@@ -11,10 +13,8 @@
   overflow: hidden;
   padding-top: 100px;
   @media (max-width: 767px) {
-    --intro-mobile-artwork-height: calc(4.92958vw - 1.97183px);
-    --intro-mobile-artwork-join: calc(
-      20px + var(--intro-mobile-artwork-height)
-    );
+    --intro-artwork-height: calc((100vw - 40px) * 21 / 426);
+    --intro-artwork-join: calc(20px + var(--intro-artwork-height) - 1px);
   }
   &::before {
     content: "";
@@ -71,14 +71,13 @@
     &::after {
       content: "";
       position: absolute;
-      top: 120px;
+      top: var(--intro-artwork-join);
       width: 1px;
-      height: calc(100% - 40px);
+      height: max(
+        calc(100% - var(--intro-artwork-join)),
+        calc(100vh - 100px - var(--intro-artwork-join))
+      );
       background-color: var(--color-line);
-      @media (max-width: 767px) {
-        top: var(--intro-mobile-artwork-join);
-        height: calc(100% + var(--intro-mobile-artwork-join));
-      }
     }
     &::before {
       left: 32px;

@@ -423,7 +423,7 @@ function footer() {
 //   });
 // }
 function animationBox() {
-  gsap.registerPlugin(SplitText, ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);
 
   gsap.utils.toArray(".polygon-box").forEach((box) => {
     if (box.dataset.revealInitialized) return;
@@ -438,17 +438,8 @@ function animationBox() {
     const branchButton = branchCard?.querySelector(
       ".section-branch__content .button-global"
     );
-    const splitBranchTitle = branchTitle
-      ? new SplitText(branchTitle, {
-          type: "words, chars",
-          wordsClass: "el-word",
-          charsClass: "el-char"
-        })
-      : null;
-
-    if (splitBranchTitle) {
-      gsap.set(branchTitle, { autoAlpha: 1 });
-      gsap.set(splitBranchTitle.chars, { y: 30, autoAlpha: 0 });
+    if (branchTitle) {
+      gsap.set(branchTitle, { y: 30, autoAlpha: 0 });
     }
 
     if (branchButton) {
@@ -476,29 +467,32 @@ function animationBox() {
       }
     );
 
-    if (splitBranchTitle) {
-      timeline.to(splitBranchTitle.chars, {
+    if (branchTitle) {
+      timeline.to(branchTitle, {
         autoAlpha: 1,
         y: 0,
-        duration: 0.3,
-        stagger: 0.05,
+        duration: 0.4,
         ease: "power2.out"
       });
     }
 
     if (branchButton) {
-      timeline.to(branchButton, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.75,
-        ease: "power2.out"
-      });
+      timeline.to(
+        branchButton,
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out"
+        },
+        branchTitle ? "-=0.2" : undefined
+      );
     }
   });
 }
 function animationText() {
   document.fonts.ready.then(() => {
-    gsap.registerPlugin(SplitText, ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
 
     document.querySelectorAll(".el-title").forEach((headingElement) => {
       const wrapper = headingElement.parentElement;
@@ -510,13 +504,11 @@ function animationText() {
         .closest(".section-contact")
         ?.querySelector(".el-fade-buttons");
 
-      gsap.set(headingElement, { autoAlpha: 1 });
+      gsap.set(headingElement, { y: 30, autoAlpha: 0 });
 
-      const splitHeading = new SplitText(headingElement, {
-        type: "words, chars",
-        wordsClass: "el-word",
-        charsClass: "el-char"
-      });
+      if (descElement) {
+        gsap.set(descElement, { y: 20, autoAlpha: 0 });
+      }
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -536,36 +528,27 @@ function animationText() {
         });
       }
 
-      tl.from(
-        splitHeading.chars,
+      tl.to(
+        headingElement,
         {
-          y: 30,
-          opacity: 0,
-          duration: 0.3,
-          stagger: 0.05,
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.65,
           ease: "power2.out"
         },
         logo ? "-=0.15" : 0
       );
 
       if (descElement) {
-        gsap.set(descElement, { autoAlpha: 1 }); // phòng trường hợp CSS đang ẩn
-
-        const splitDescription = new SplitText(descElement, {
-          type: "lines",
-          linesClass: "el-line"
-        });
-
-        tl.from(
-          splitDescription.lines,
+        tl.to(
+          descElement,
           {
-            y: 20,
-            opacity: 0,
-            duration: 0.35,
-            stagger: 0.1,
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.6,
             ease: "power2.out"
           },
-          "-=0.15"
+          "-=0.3"
         );
       }
 
@@ -792,7 +775,56 @@ function animationMake() {
     const items = section.querySelectorAll(".make-item");
     if (!items.length) return;
 
+    const makeMain = section.querySelector(".make-main");
+    const firstItem = items[0];
+    const mobileMakeMedia = window.matchMedia("(max-width: 767px)");
+    let isMakeMainHidden = false;
+
+    const layoutMakeItems = () => {
+      if (!mobileMakeMedia.matches) {
+        items.forEach((item) => item.style.removeProperty("--make-item-top"));
+        return;
+      }
+
+      const itemGap = 110;
+      let nextItemTop = section.clientHeight;
+
+      items.forEach((item) => {
+        item.style.setProperty("--make-item-top", `${nextItemTop}px`);
+        nextItemTop += item.offsetHeight + itemGap;
+      });
+    };
+
+    const updateMakeMainVisibility = () => {
+      if (!makeMain) return;
+
+      if (!mobileMakeMedia.matches) {
+        if (isMakeMainHidden) {
+          isMakeMainHidden = false;
+          gsap.set(makeMain, {
+            clearProps: "opacity,visibility,transform"
+          });
+        }
+        return;
+      }
+
+      // Lower-third boundary: the item has travelled 1/3 into the viewport.
+      const shouldHide =
+        firstItem.getBoundingClientRect().top <= window.innerHeight * (2 / 3);
+      if (shouldHide === isMakeMainHidden) return;
+
+      isMakeMainHidden = shouldHide;
+      gsap.to(makeMain, {
+        autoAlpha: shouldHide ? 0 : 1,
+        y: shouldHide ? -24 : 0,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    };
+
     items.forEach((item, i) => item.style.setProperty("--i", i));
+    layoutMakeItems();
 
     // --- Clone thêm flower ngẫu nhiên ---
     const flowerGroup = section.querySelector(".make-flower");
@@ -800,7 +832,11 @@ function animationMake() {
       ? [...flowerGroup.querySelectorAll(".flower-item")]
       : [];
 
-    if (flowerGroup && baseFlowers.length) {
+    if (
+      flowerGroup &&
+      baseFlowers.length &&
+      !flowerGroup.classList.contains("hidden-flower")
+    ) {
       const EXTRA_COUNT = 5; // số flower muốn thêm
       const TOTAL = baseFlowers.length + EXTRA_COUNT;
 
@@ -863,10 +899,28 @@ function animationMake() {
       }
     }
 
-    const flowers = section.querySelectorAll(".flower-item"); // full list, gồm cả clone
+    const flowers = flowerGroup?.classList.contains("hidden-flower")
+      ? []
+      : section.querySelectorAll(".flower-item"); // full list, gồm cả clone
 
-    const getMaxTravel = () =>
-      Math.max(...[...items].map((it) => it.offsetTop + it.offsetHeight));
+    const getMaxTravel = () => {
+      layoutMakeItems();
+      const lastItem = items[items.length - 1];
+
+      if (mobileMakeMedia.matches) {
+        const mobileEndGap = 80;
+        const finalItemTop = Math.max(
+          0,
+          window.innerHeight - lastItem.offsetHeight - mobileEndGap
+        );
+
+        return Math.max(0, lastItem.offsetTop - finalItemTop);
+      }
+
+      return Math.max(
+        ...[...items].map((item) => item.offsetTop + item.offsetHeight)
+      );
+    };
 
     const tl = gsap.timeline({
       defaults: { ease: "none" },
@@ -876,7 +930,12 @@ function animationMake() {
         end: () => "+=" + getMaxTravel(),
         pin: true,
         scrub: 1,
-        invalidateOnRefresh: true
+        invalidateOnRefresh: true,
+        onUpdate: updateMakeMainVisibility,
+        onRefresh: () => {
+          layoutMakeItems();
+          updateMakeMainVisibility();
+        }
         // markers: true,
       }
     });
@@ -902,12 +961,14 @@ function animationMake() {
 
     // Timeline riêng cho phần flower, chạy suốt từ đầu đến cuối quãng scroll
     const remaining = flowerList.slice(1); // bỏ bông đầu ra, nó không cần animate hiện/ẩn
-    const step = remaining.length ? 1 / remaining.length : 0; // chia đều timeline cho từng bông còn lại
 
     remaining.forEach((flower, i) => {
       const isBlurType = Math.random() < 0.5; // 50% blur, 50% zoom
-      const duration = gsap.utils.random(0.35, 0.5); // ngắn để không đè bông kế tiếp
-      const startAt = i * step; // bông sau luôn bắt đầu sau bông trước
+      const duration = gsap.utils.random(0.25, 0.4);
+      const startAt =
+        remaining.length === 1
+          ? 1 - duration
+          : (i / (remaining.length - 1)) * (1 - duration);
 
       if (isBlurType) {
         // Nhóm blur: từ ẩn + mờ → hiện + nét, scale giữ nguyên

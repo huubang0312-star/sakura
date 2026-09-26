@@ -19,6 +19,7 @@
   overflow: hidden;
   &.layout-contact {
     --contact-artwork-bottom: 20vh;
+    --contact-artwork-height: calc((100vw - 64px) * 34 / 1377);
     position: relative;
     background-image:
       linear-gradient(rgb(0 0 0 / 0.6), rgb(0 0 0 / 0.6)),
@@ -32,6 +33,7 @@
     padding: 0 32px;
     min-height: 120vh;
     @media (max-width: 767px) {
+      --contact-artwork-height: calc((100vw - 40px) * 21 / 426);
       padding: 0 20px;
       min-height: 1300px;
       background-attachment: scroll;
@@ -43,12 +45,13 @@
       top: 0;
       left: 32px;
       width: 1px;
-      height: calc(80%);
+      height: auto;
+      bottom: calc(
+        var(--contact-artwork-bottom) + var(--contact-artwork-height) - 1px
+      );
       background-color: var(--color-line);
       @media (max-width: 767px) {
         left: 20px;
-        bottom: var(--contact-artwork-bottom);
-        height: auto;
       }
     }
     &::after {
@@ -57,12 +60,13 @@
       top: 0;
       right: 32px;
       width: 1px;
-      height: calc(80%);
+      height: auto;
+      bottom: calc(
+        var(--contact-artwork-bottom) + var(--contact-artwork-height) - 1px
+      );
       background-color: var(--color-line);
       @media (max-width: 767px) {
         right: 20px;
-        bottom: var(--contact-artwork-bottom);
-        height: auto;
       }
     }
     // min-height: auto;
@@ -136,7 +140,7 @@
         line-height: 100px;
         margin-bottom: 12px;
         @media (max-width: 767px) {
-          font-size: 64px;
+          font-size: 40px;
           line-height: 1;
         }
       }

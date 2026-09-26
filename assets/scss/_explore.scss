@@ -57,8 +57,22 @@
     border-radius: 24px;
   }
   &-img {
+    position: relative;
     width: 100%;
     aspect-ratio: 364 / 473;
+    overflow: hidden;
+
+    iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      pointer-events: none;
+      transform: scale(1.4);
+      transform-origin: center;
+    }
+
     img {
       width: 100%;
       height: 100%;
@@ -73,21 +87,22 @@
   }
   &-name {
     position: relative;
-    &::before {
-      content: "";
-      position: absolute;
-      top: -25%;
-      left: -25%;
-      background: radial-gradient(
-        50% 50% at 50% 50%,
-        rgba(0, 0, 0, 0.8) 62.49%,
-        rgba(0, 0, 0, 0) 100%
-      );
-      width: 150%;
-      height: 150%;
-      transform: scale(1.2);
-      z-index: -1;
-    }
+    // Shadow under the About service-card title — temporarily disabled.
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   top: -25%;
+    //   left: -25%;
+    //   background: radial-gradient(
+    //     50% 50% at 50% 50%,
+    //     rgba(0, 0, 0, 0.8) 62.49%,
+    //     rgba(0, 0, 0, 0) 100%
+    //   );
+    //   width: 150%;
+    //   height: 150%;
+    //   transform: scale(1.2);
+    //   z-index: -1;
+    // }
   }
   &-control {
     padding-left: 118px;

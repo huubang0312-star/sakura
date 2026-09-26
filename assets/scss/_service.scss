@@ -1,4 +1,5 @@
 .service {
+  --service-line-cap-height: calc((100vw - 128px) * 34 / 1377);
   padding: 120px 32px 200px;
   width: 100%;
   margin: 0 auto;
@@ -8,6 +9,7 @@
   background-attachment: fixed;
   position: relative;
   @media (max-width: 767px) {
+    --service-line-cap-height: calc((100vw - 40px) * 21 / 426);
     padding: 120px 20px 200px;
     background-attachment: scroll;
   }
@@ -27,15 +29,15 @@
       width: 1px;
       height: auto;
       background-color: var(--color-line);
-      top: 0px;
-      bottom: 0;
+      top: var(--service-line-cap-height);
+      bottom: var(--service-line-cap-height);
     }
     &.line-right {
       width: 1px;
       height: auto;
       background-color: var(--color-line);
-      top: 0px;
-      bottom: 0;
+      top: var(--service-line-cap-height);
+      bottom: var(--service-line-cap-height);
       left: auto;
       right: 32px;
       @media (max-width: 767px) {

@@ -123,6 +123,12 @@
 }
 
 @media (scripting: enabled) {
+  .el-title,
+  .el-desc {
+    opacity: 0;
+    visibility: hidden;
+  }
+
   .polygon-box {
     opacity: 0;
   }

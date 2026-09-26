@@ -1010,6 +1010,11 @@ body {
 }
 
 @media (scripting: enabled) {
+  .el-title,
+  .el-desc {
+    opacity: 0;
+    visibility: hidden;
+  }
   .polygon-box {
     opacity: 0;
   }
@@ -1155,18 +1160,6 @@ body {
   position: relative;
   z-index: 10;
 }
-.hero-content-wrapper::before {
-  content: "";
-  position: absolute;
-  top: -25%;
-  left: -25%;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.8) 62.49%, rgba(0, 0, 0, 0) 100%);
-  width: 150%;
-  height: 150%;
-  transform: scale(1.2);
-  z-index: 1;
-  opacity: 0.8;
-}
 .hero-img {
   width: 100%;
   height: 100%;
@@ -1201,6 +1194,8 @@ body {
 }
 
 .intro {
+  --intro-artwork-height: calc((100vw - 64px) * 34 / 1377);
+  --intro-artwork-join: calc(80px + var(--intro-artwork-height) - 1px);
   min-height: 100vh;
   border-radius: 1200px 1200px 0 0;
   margin-top: -60vh;
@@ -1214,10 +1209,8 @@ body {
 }
 @media (max-width: 767px) {
   .intro {
-    --intro-mobile-artwork-height: calc(4.92958vw - 1.97183px);
-    --intro-mobile-artwork-join: calc(
-      20px + var(--intro-mobile-artwork-height)
-    );
+    --intro-artwork-height: calc((100vw - 40px) * 21 / 426);
+    --intro-artwork-join: calc(20px + var(--intro-artwork-height) - 1px);
   }
 }
 .intro::before {
@@ -1277,16 +1270,10 @@ body {
 .intro-container::before, .intro-container::after {
   content: "";
   position: absolute;
-  top: 120px;
+  top: var(--intro-artwork-join);
   width: 1px;
-  height: calc(100% - 40px);
+  height: max(100% - var(--intro-artwork-join), 100vh - 100px - var(--intro-artwork-join));
   background-color: var(--color-line);
-}
-@media (max-width: 767px) {
-  .intro-container::before, .intro-container::after {
-    top: var(--intro-mobile-artwork-join);
-    height: calc(100% + var(--intro-mobile-artwork-join));
-  }
 }
 .intro-container::before {
   left: 32px;
@@ -1648,6 +1635,7 @@ body {
 }
 .section-contact.layout-contact {
   --contact-artwork-bottom: 20vh;
+  --contact-artwork-height: calc((100vw - 64px) * 34 / 1377);
   position: relative;
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/del/intro-cover.png");
   background-size: cover;
@@ -1661,6 +1649,7 @@ body {
 }
 @media (max-width: 767px) {
   .section-contact.layout-contact {
+    --contact-artwork-height: calc((100vw - 40px) * 21 / 426);
     padding: 0 20px;
     min-height: 1300px;
     background-attachment: scroll;
@@ -1673,14 +1662,13 @@ body {
   top: 0;
   left: 32px;
   width: 1px;
-  height: 80%;
+  height: auto;
+  bottom: calc(var(--contact-artwork-bottom) + var(--contact-artwork-height) - 1px);
   background-color: var(--color-line);
 }
 @media (max-width: 767px) {
   .section-contact.layout-contact::before {
     left: 20px;
-    bottom: var(--contact-artwork-bottom);
-    height: auto;
   }
 }
 .section-contact.layout-contact::after {
@@ -1689,14 +1677,13 @@ body {
   top: 0;
   right: 32px;
   width: 1px;
-  height: 80%;
+  height: auto;
+  bottom: calc(var(--contact-artwork-bottom) + var(--contact-artwork-height) - 1px);
   background-color: var(--color-line);
 }
 @media (max-width: 767px) {
   .section-contact.layout-contact::after {
     right: 20px;
-    bottom: var(--contact-artwork-bottom);
-    height: auto;
   }
 }
 .section-contact.layout-contact .contact-line-row {
@@ -1764,7 +1751,7 @@ body {
 }
 @media (max-width: 767px) {
   .section-contact.layout-contact .contact-box h2 {
-    font-size: 64px;
+    font-size: 40px;
     line-height: 1;
   }
 }
@@ -2373,8 +2360,20 @@ body {
   border-radius: 24px;
 }
 .explore-img {
+  position: relative;
   width: 100%;
   aspect-ratio: 364/473;
+  overflow: hidden;
+}
+.explore-img iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+  transform: scale(1.4);
+  transform-origin: center;
 }
 .explore-img img {
   width: 100%;
@@ -2389,17 +2388,6 @@ body {
 }
 .explore-name {
   position: relative;
-}
-.explore-name::before {
-  content: "";
-  position: absolute;
-  top: -25%;
-  left: -25%;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.8) 62.49%, rgba(0, 0, 0, 0) 100%);
-  width: 150%;
-  height: 150%;
-  transform: scale(1.2);
-  z-index: -1;
 }
 .explore-control {
   padding-left: 118px;
@@ -2518,7 +2506,7 @@ body {
   max-width: 16.6666666667%;
   width: 100%;
   --gap: 50%;
-  top: calc(100% + var(--i) * var(--gap));
+  top: var(--make-item-top, calc(100% + var(--i) * var(--gap)));
 }
 @media (max-width: 767px) {
   .make-item {
@@ -2558,6 +2546,7 @@ body {
   }
 }
 .make-img {
+  position: relative;
   width: 100%;
   aspect-ratio: 265/365;
   mask: url("../../images/icons/mask.svg");
@@ -2575,6 +2564,16 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.make-img iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+  transform: scale(1.4);
+  transform-origin: center;
 }
 .make-flower {
   position: absolute;
@@ -2722,18 +2721,6 @@ body {
   font-size: 64px;
   font-weight: 400;
   line-height: 80px;
-}
-.section-branch__content h3::before {
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  width: min(100% + clamp(120px, 18vw, 280px), 1040px);
-  aspect-ratio: 1668/316;
-  background: url("../../images/icons/bg-title-gradient.png") center/100% 100% no-repeat;
-  content: "";
-  transform: translate(-50%, -50%);
-  pointer-events: none;
 }
 .section-branch__content .button-global {
   position: relative;
@@ -2974,6 +2961,7 @@ body {
 }
 
 .service {
+  --service-line-cap-height: calc((100vw - 128px) * 34 / 1377);
   padding: 120px 32px 200px;
   width: 100%;
   margin: 0 auto;
@@ -2985,6 +2973,7 @@ body {
 }
 @media (max-width: 767px) {
   .service {
+    --service-line-cap-height: calc((100vw - 40px) * 21 / 426);
     padding: 120px 20px 200px;
     background-attachment: scroll;
   }
@@ -3008,15 +2997,15 @@ body {
   width: 1px;
   height: auto;
   background-color: var(--color-line);
-  top: 0px;
-  bottom: 0;
+  top: var(--service-line-cap-height);
+  bottom: var(--service-line-cap-height);
 }
 .service-line.line-right {
   width: 1px;
   height: auto;
   background-color: var(--color-line);
-  top: 0px;
-  bottom: 0;
+  top: var(--service-line-cap-height);
+  bottom: var(--service-line-cap-height);
   left: auto;
   right: 32px;
 }

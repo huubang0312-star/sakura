@@ -37,24 +37,23 @@
         position: relative;
         z-index: 10;
       }
-      &::before {
-        content: "";
-        position: absolute;
-        top: -25%;
-        left: -25%;
-        background: radial-gradient(
-          50% 50% at 50% 50%,
-          rgba(0, 0, 0, 0.8) 62.49%,
-          rgba(0, 0, 0, 0) 100%
-        );
-        width: 150%;
-        height: 150%;
-        transform: scale(
-          1.2
-        ); // vẫn giữ được, vì đây là context riêng của ::before, không ảnh hưởng h2/a
-        z-index: 1;
-        opacity: 0.8;
-      }
+      // Shadow under the About hero title — temporarily disabled.
+      // &::before {
+      //   content: "";
+      //   position: absolute;
+      //   top: -25%;
+      //   left: -25%;
+      //   background: radial-gradient(
+      //     50% 50% at 50% 50%,
+      //     rgba(0, 0, 0, 0.8) 62.49%,
+      //     rgba(0, 0, 0, 0) 100%
+      //   );
+      //   width: 150%;
+      //   height: 150%;
+      //   transform: scale(1.2);
+      //   z-index: 1;
+      //   opacity: 0.8;
+      // }
     }
   }
   &-img {
