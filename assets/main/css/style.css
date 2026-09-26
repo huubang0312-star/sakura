@@ -3116,7 +3116,7 @@ body {
 }
 @media (min-width: 992px) {
   .service-item:nth-child(odd) .service-content {
-    padding-left: 24px;
+    padding-left: 80px;
     padding-right: 0;
   }
   .service-item:nth-child(even) {
@@ -3124,7 +3124,7 @@ body {
   }
   .service-item:nth-child(even) .service-content {
     padding-left: 0;
-    padding-right: 24px;
+    padding-right: 80px;
   }
 }
 .service-item:last-child {
