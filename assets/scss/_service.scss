@@ -101,27 +101,34 @@
       margin-bottom: 64px;
       padding: 0 20px;
     }
-    &:last-child {
-      margin-bottom: 0;
-      .service-content {
-        padding-left: 0;
-        padding-right: calc(2 / 12 * 100%);
-        @media (max-width: 767px) {
-          padding-right: 0;
+
+    @media (min-width: 992px) {
+      &:nth-child(odd) .service-content {
+        padding-left: 24px;
+        padding-right: 0;
+      }
+
+      &:nth-child(even) {
+        flex-direction: row-reverse;
+
+        .service-content {
+          padding-left: 0;
+          padding-right: 24px;
         }
       }
     }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   &-content {
-    padding-left: calc(2 / 12 * 100%);
+    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 24px;
     justify-content: center;
     height: 100%;
-    @media (max-width: 767px) {
-      padding-left: 0;
-    }
     .button-global {
       margin-top: 16px;
     }

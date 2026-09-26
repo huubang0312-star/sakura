@@ -3114,30 +3114,29 @@ body {
     padding: 0 20px;
   }
 }
+@media (min-width: 992px) {
+  .service-item:nth-child(odd) .service-content {
+    padding-left: 24px;
+    padding-right: 0;
+  }
+  .service-item:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+  .service-item:nth-child(even) .service-content {
+    padding-left: 0;
+    padding-right: 24px;
+  }
+}
 .service-item:last-child {
   margin-bottom: 0;
 }
-.service-item:last-child .service-content {
-  padding-left: 0;
-  padding-right: 16.6666666667%;
-}
-@media (max-width: 767px) {
-  .service-item:last-child .service-content {
-    padding-right: 0;
-  }
-}
 .service-content {
-  padding-left: 16.6666666667%;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
   justify-content: center;
   height: 100%;
-}
-@media (max-width: 767px) {
-  .service-content {
-    padding-left: 0;
-  }
 }
 .service-content .button-global {
   margin-top: 16px;
